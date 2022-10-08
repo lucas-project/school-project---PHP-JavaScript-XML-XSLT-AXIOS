@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<customers>
+  <customer>
+    <id>1665225088992</id>
+    <firstname>eaw</firstname>
+    <lastname>eawe</lastname>
+    <email>awe</email>
+    <phone>02 11111111</phone>
+    <password>111</password>
+  </customer>
+</customers>
