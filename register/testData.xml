@@ -1,11 +1,27 @@
 <?xml version="1.0"?>
 <customers>
   <customer>
-    <id>1665225088992</id>
-    <firstname>eaw</firstname>
-    <lastname>eawe</lastname>
-    <email>awe</email>
-    <phone>02 11111111</phone>
-    <password>111</password>
+    <id>1665268271354</id>
+    <firstname>htr</firstname>
+    <lastname>hfg</lastname>
+    <email>hrt</email>
+    <phone>04 22222222</phone>
+    <password>222</password>
+  </customer>
+  <customer>
+    <id>1665268279684</id>
+    <firstname>htr</firstname>
+    <lastname>hfg</lastname>
+    <email>hrt</email>
+    <phone>04 22222222</phone>
+    <password>222</password>
+  </customer>
+  <customer>
+    <id>1665272439031</id>
+    <firstname>htr</firstname>
+    <lastname>hfg</lastname>
+    <email>hrt</email>
+    <phone>04 22222222</phone>
+    <password>222</password>
   </customer>
 </customers>

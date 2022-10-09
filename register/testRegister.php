@@ -61,60 +61,82 @@ if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]
 	if (!file_exists($xmlfile)){ // if the xml file does not exist, create a root node $customers
 		$customers = $doc->createElement('customers');
 		$doc->appendChild($customers);
+        echo "customers created";
 	}
 	else { // load the xml file
 		$doc->preserveWhiteSpace = FALSE; 
 		$doc->load($xmlfile);
 
-	}
+        $customers = $doc->getElementsByTagName("customers");
 
-	//create a customer node under customers node
-	$customers = $doc->getElementsByTagName('customers')->item(0);
-	$customer = $doc->createElement('customer');
-	$customers->appendChild($customer);
+        echo "before childNodes";
 
-    // create unique id using time stamp
-    $ids = $doc->createElement('id');
-    $customer->appendChild($ids);
-    $idValue = $doc->createTextNode($id);
-    $ids->appendChild($idValue);
+        if (isset($customers->customer)){
+            echo "before foreach";
+            foreach($customers as $node)
+            {
+                echo "inside foreach";
+                $emails = $node->getElementsByTagName("email");
 
-	// create first name node ....
-	$firstname = $doc->createElement('firstname');
-	$customer->appendChild($firstname);
-	$firstNameValue = $doc->createTextNode($firstName);
-	$firstname->appendChild($firstNameValue);
+                if ($emails==$email){
+                    echo "email same";
+                }
+            }
+        }else {
+            echo "else";
+            //create a customer node under customers node
+            $customers = $doc->getElementsByTagName('customers')->item(0);
+            $customer = $doc->createElement('customer');
+            $customers->appendChild($customer);
 
-	// create last name node ....
-	$lastname = $doc->createElement('lastname');
-	$customer->appendChild($lastname);
-	$lastNameValue = $doc->createTextNode($lastName);
-	$lastname->appendChild($lastNameValue);
+            // create unique id using time stamp
+            $ids = $doc->createElement('id');
+            $customer->appendChild($ids);
+            $idValue = $doc->createTextNode($id);
+            $ids->appendChild($idValue);
 
-	//create a Email node ....
-	$Email = $doc->createElement('email');
-	$customer->appendChild($Email);
-	$emailValue = $doc->createTextNode($email);
-	$Email->appendChild($emailValue);
+            // create first name node ....
+            $firstname = $doc->createElement('firstname');
+            $customer->appendChild($firstname);
+            $firstNameValue = $doc->createTextNode($firstName);
+            $firstname->appendChild($firstNameValue);
 
-	//create a Phone node ....
-	$Phone = $doc->createElement('phone');
-	$customer->appendChild($Phone);
-	$phoneValue = $doc->createTextNode($phone);
-	$Phone->appendChild($phoneValue);
+            // create last name node ....
+            $lastname = $doc->createElement('lastname');
+            $customer->appendChild($lastname);
+            $lastNameValue = $doc->createTextNode($lastName);
+            $lastname->appendChild($lastNameValue);
 
-	//create a pwd node ....
-	$pwd = $doc->createElement('password');
-	$customer->appendChild($pwd);
-	$pwdValue = $doc->createTextNode($password);
-	$pwd->appendChild($pwdValue);
+            //create a Email node ....
+            $Email = $doc->createElement('email');
+            $customer->appendChild($Email);
+            $emailValue = $doc->createTextNode($email);
+            $Email->appendChild($emailValue);
 
-	//save the xml file
-	$doc->formatOutput = true;
-	$doc->save($xmlfile);
+            //create a Phone node ....
+            $Phone = $doc->createElement('phone');
+            $customer->appendChild($Phone);
+            $phoneValue = $doc->createTextNode($phone);
+            $Phone->appendChild($phoneValue);
+
+            //create a pwd node ....
+            $pwd = $doc->createElement('password');
+            $customer->appendChild($pwd);
+            $pwdValue = $doc->createTextNode($password);
+            $pwd->appendChild($pwdValue);
+
+
 //	$emailValues = $emailValue -> nodeValue;
 //	$lastNameValues = $lastNameValue -> nodeValue;
 //	$phoneValues = $phoneValue ->nodeValue;
+        }
+	}
+        //save the xml file
+        $doc->formatOutput = true;
+        $doc->save($xmlfile);
+
+        echo "<a href=../buyonline.htm> <- Back</a>";
+
 
 	} 
 }
