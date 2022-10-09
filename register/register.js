@@ -17,7 +17,7 @@ function testGet() {
 		var password = document.getElementById('password').value;
 		var confirmpassword = document.getElementById('confirmpassword').value;
 
-		xhr.open("GET", "testRegister.php?firstname=" + encodeURIComponent(firstname) + "&lastname=" + encodeURIComponent(lastname) + "&email=" + encodeURIComponent(email) + "&phone=" + encodeURIComponent(phone) + "&password=" +password + "&confirmpassword=" +confirmpassword + "&id=" + Number(new Date), true);
+		xhr.open("GET", "register.php?firstname=" + encodeURIComponent(firstname) + "&lastname=" + encodeURIComponent(lastname) + "&email=" + encodeURIComponent(email) + "&phone=" + encodeURIComponent(phone) + "&password=" +password + "&confirmpassword=" +confirmpassword + "&id=" + Number(new Date), true);
 
 		xhr.onreadystatechange = testInput;
 		xhr.send(null);
@@ -64,14 +64,14 @@ document.getElementById('confirmpassword').value="";
 document.getElementById('msg').innerHTML ="";
 }
 
-setInterval(loadItems,5000);
-function loadItems(){
-	xhr.open('GET',"biddingload.php?id="+Number(new Date),true);
-	xhr.onreadystatechange = function (){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var xmlDox = xhrt.responseXML;
-			retrieveItemFromXMLDocument*=(xmlDoc);
-		}
-	}
-	xhr.send(null);
-}
+// setInterval(loadItems,5000);
+// function loadItems(){
+// 	xhr.open('GET',"biddingload.php?id="+Number(new Date),true);
+// 	xhr.onreadystatechange = function (){
+// 		if(xhr.readyState == 4 && xhr.status == 200){
+// 			var xmlDox = xhrt.responseXML;
+// 			retrieveItemFromXMLDocument*=(xmlDoc);
+// 		}
+// 	}
+// 	xhr.send(null);
+// }

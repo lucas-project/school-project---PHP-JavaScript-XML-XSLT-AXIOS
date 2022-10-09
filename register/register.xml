@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<customers>
+  <customer>
+    <id>1665309101940</id>
+    <firstname>Atom Tig</firstname>
+    <lastname>Tig</lastname>
+    <email>9</email>
+    <phone>04 58853840</phone>
+    <password>111</password>
+  </customer>
+  <customer>
+    <id>1665309134469</id>
+    <firstname>Atom Tig</firstname>
+    <lastname>Tig</lastname>
+    <email>2</email>
+    <phone>04 58853840</phone>
+    <password>111</password>
+  </customer>
+  <customer>
+    <id>1665309144157</id>
+    <firstname>Atom Tig</firstname>
+    <lastname>Tig</lastname>
+    <email>2</email>
+    <phone>04 58853840</phone>
+    <password>111</password>
+  </customer>
+  <customer>
+    <id>1665311340008</id>
+    <firstname>Atom Tig</firstname>
+    <lastname>Tig</lastname>
+    <email>3</email>
+    <phone>04 58853840</phone>
+    <password>111</password>
+  </customer>
+  <customer>
+    <id>1665311340008</id>
+    <firstname>Atom Tig</firstname>
+    <lastname>Tig</lastname>
+    <email>3</email>
+    <phone>04 58853840</phone>
+    <password>111</password>
+  </customer>
+  <customer>
+    <id>1665311340008</id>
+    <firstname>Atom Tig</firstname>
+    <lastname>Tig</lastname>
+    <email>3</email>
+    <phone>04 58853840</phone>
+    <password>111</password>
+  </customer>
+</customers>

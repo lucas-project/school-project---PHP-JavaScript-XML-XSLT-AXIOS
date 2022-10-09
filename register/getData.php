@@ -6,7 +6,7 @@
 
 header('Content-Type: text/xml');
 
-$xmlfile = './testData.xml';
+$xmlfile = './register.xml';
 
 if (!file_exists($xmlfile)){ // if the xml file does not exist
 	echo "The xml file does not exist.";
