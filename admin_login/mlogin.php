@@ -6,7 +6,7 @@ session_start();
 
 <HTML XMLns="http://www.w3.org/1999/xHTML">
 <head>
-    <title>Lucas Qin Lab 03 task C</title>
+    <title>Admin login</title>
 </head>
 <body>
 <H1>Input a name in below text box and click 'search' button to see the phone number.</H1>
@@ -47,7 +47,7 @@ else {
         $temp = strval($curBowler[0]);
 
 //        if ($temp == $name && $curBowler[1]==$password) {
-//            header ("location: processing.php");
+//            header ("location: processing.htm");
 //            exit();
 //        } elseif ($i == (count($bowlers) - 1)) {
 //            echo "<p>Account not exit, register first.</p>";
@@ -58,8 +58,12 @@ else {
         if ($temp == $name){
             if (strcmp(trim($curBowler[1]), trim($password)==0)){
                 $_SESSION['username']=$name;
-                header ("location: processing.php");
-
+                echo "Hi,".$name.", you are successfully logined<br>";
+                echo "<br>Choose an operation below:";
+                echo "<br><br><button><a href='processing.htm'>processing page</a></button><br>";
+                echo "<br><button><a href='listing.htm'>listing page</a></button>";
+                echo "<br><button><a href='mlogout.php'>logout</a></button>";
+                break;
             }else {
 //                echo $name." ".$curBowler[1];
 //                echo $password."=".$curBowler[1];

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="new customer registration" />
+    <meta name="keywords" content="HTML, JavaScript, PHP, ajax, XML, XSLT" />
+    <meta name="author" content="Wei Lai" />
+    <script type="text/javascript" src="processListing.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Add items</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <a href="listing.htm">listing</a>
+        </div>
+        <div class="col-sm">
+            <a href="processing.htm">processing</a>
+        </div>
+        <div class="col-sm">
+            <a href="mlogout.php">logout</a>
+        </div>
+    </div>
+</div>
+<h1>Add an item</h1>
+
+<table>
+    <tr>
+        <td><label for="name">name: </label></td>
+        <td><input type="text" name="name" id="name" /></td>
+    </tr>
+    <tr>
+        <td><label for="price">Item price: </label></td>
+        <td><input type="text" name="price" id="price" /></td>
+    </tr>
+    <tr>
+        <td><label for="quantity">Item quantity: </label></td>
+        <td><input type="text" name="quantity" id="quantity" /></td>
+    </tr>
+    <tr>
+        <td><label for="description">Item description: </label></td>
+        <td><input type="text" name="description" id="description" /></td>
+    </tr>
+
+    <tr>
+        <td><button onclick="clearForm();">Reset</button></td>
+        <td><button onclick="testGet();">Add Item</button></td>
+    </tr>
+    <tr>
+        <td><button onclick="deleteXML();">Delete the file</button></td>
+        <td><button onclick="getXML();">Get the XML file</button></td>
+    </tr>
+    </div>
+</table>
+<p id="msg"></p>
+</body>
+</html>
