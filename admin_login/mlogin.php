@@ -9,7 +9,7 @@ session_start();
     <title>Admin login</title>
 </head>
 <body>
-<H1>Input a name in below text box and click 'search' button to see the phone number.</H1>
+<H1>Login here as Admin</H1>
 
 <form>
     <br>
