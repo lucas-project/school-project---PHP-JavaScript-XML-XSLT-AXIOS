@@ -1,6 +1,5 @@
 <?php
     $xmlDoc = new DomDocument;
-
     $xmlDoc->load("../../admin/goods.xml");
     $xslDoc = new DomDocument;
     $xslDoc->load("buying.xsl");

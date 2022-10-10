@@ -4,32 +4,19 @@
     <id>1665292000166</id>
     <name>buy grocery</name>
     <price>60000</price>
-    <quantity>36</quantity>
+    <quantity>49</quantity>
     <description>fsdafds</description>
-    <onhold>-2</onhold>
-    <sold>0</sold>
-    <total>0</total>
+    <onhold>-18</onhold>
+    <sold>3</sold>
   </item>
   <item>
     <id>1665352642129</id>
     <name>Make the world bette</name>
     <price>545</price>
-    <quantity>62</quantity>
+    <quantity>75</quantity>
     <description>A small machine</description>
-    <onhold>3</onhold>
-    <sold>0</sold>
+    <onhold>-11</onhold>
+    <sold>1</sold>
     <add/>
-    <total>0</total>
-  </item>
-  <item>
-    <id>1665377883099</id>
-    <name>Atom Tig</name>
-    <price>2000</price>
-    <quantity>29</quantity>
-    <description>fsdafdsffffffffffffff</description>
-    <onhold>1</onhold>
-    <sold>0</sold>
-    <add/>
-    <total>0</total>
   </item>
 </items>
