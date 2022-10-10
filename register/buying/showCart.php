@@ -145,7 +145,14 @@ function performPurchase($action) {
                     $good->getElementsByTagName('sold')->item(0)->nodeValue = $quantitySoldXml + $value;
                 }
                 if ($action == "cancel") {
+//                    $good->getElementsByTagName('quantity')->item(0)->nodeValue = $quantityXml + $value;
+//                    exit();
                     $good->getElementsByTagName('quantity')->item(0)->nodeValue = $quantityXml + $value;
+
+//                    echo "<br>value is ".$quantityXml;
+//                    unset($_SESSION["Cart"]);
+//                    $_SESSION["Cart"]=array();
+                    echo "<br>Your purchase request has been cancelled, welcome to shop next time";
                     exit();
                 }
             }
@@ -159,7 +166,7 @@ function performPurchase($action) {
         $cartXml->removeChild($cartXml->firstChild);
     }
     //update xml files
-    $docForCart->save($pathToCart);
+    $docForCart->save("../../admin/cart.xml");
     $xmlDoc->save($pathToGood);
     transformXsl("showCart.xsl");
     // UPDATE CART
