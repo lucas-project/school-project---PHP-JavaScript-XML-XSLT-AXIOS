@@ -1,9 +1,9 @@
 <?php session_start(); ?>
 <?php
 
-$folder = "./";
+$folder = "../../admin";
 $pathToGood = "../../admin/goods.xml";
-$pathToCart = "cart.xml";
+$pathToCart = "";
 $action = $_GET["action"];
 
 if (array_key_exists("itemNumber", $_GET)) {
@@ -28,63 +28,71 @@ $arrGood = $root->getElementsByTagName('item');
 $docForCart = new DomDocument("1.0");
 $docForCart->formatOutput = true;
 $docForCart->preserveWhiteSpace = false;
-
-if (!file_exists($pathToCart)) {
+echo "<br>before create";
+$xmlfile='../../admin/cart.xml';
+if (!file_exists($xmlfile)) {
     createXML($docForCart);
     $docForCart->load($pathToCart);
+    echo "<br>after create";
 } else {
-    $docForCart->load($pathToCart);
+    echo "<br>create else";
+    $docForCart->load($xmlfile);
 }
 
 
 if ($action == "confirm") {
     performPurchase("confirm");
 } else if ($action == "add") {
-    echo "inside add";
+    echo "<br>1";
     foreach ($arrGood as $good) {
-        echo "<br>inside add for";
+        echo "<br>2";
         $itemNoXml = $good->getElementsByTagName('id')->item(0)->nodeValue;
         $quantityXml = $good->getElementsByTagName('quantity')->item(0)->nodeValue;
-        $onholdXml = $good->getElementsByTagName('onhold')->item(0)->nodeValue;
-        echo "<br>inside add for before itemno";
-        echo "<br>".$itemNoXml;
-        echo "<br>".$newItemNo;
+        $quantityHoldXml = $good->getElementsByTagName('onhold')->item(0)->nodeValue;
+        echo "<br>3";
         if ($itemNoXml == $newItemNo) {// (1) if equals from select in form
-            echo "<br>inside if";
+            echo "<br>4";
             if ($quantityXml > 0) { // (2) if quan > 0
                 //(1)--START: HANDING CART session
+                echo "<br>5";
                 if (count($cart) == 0) { // nothing in cart
                     $cart[$newItemNo] = 1;
+                    echo "<br>6";
                 } else { // have exist
+                    echo "<br>7";
                     if ($cart[$newItemNo] > 0) { // exist key = newItemNo
+                        echo "<br>8";
                         $oldQuantity = $cart[$newItemNo];
                         $cart[$newItemNo] = $oldQuantity + 1;
                     } else {
+                        echo "<br>9";
                         $cart[$newItemNo] = 1;
                     }
                 }
                 $_SESSION["Cart"] = $cart; // (4)update cart
-                //--END: HANDING CART session
+                //--END: HANDING CART session7
                 //(2)--START HANDING GOODS quantity, quantity hold
+                echo "<br>10";
                 $good->getElementsByTagName('quantity')->item(0)->nodeValue = $quantityXml - 1; // -1 quantity
-                $good->getElementsByTagName('onhold')->item(0)->nodeValue = $onholdXml + 1; // +1 Hold
-//                echo "<br>1";
+                $good->getElementsByTagName('onhold')->item(0)->nodeValue = $quantityHoldXml + 1; // +1 Hold
                 $xmlDoc->save($pathToGood);
-//                echo "<br>2";
                 //--END HANDING GOODS
                 //(3)-- HANDING CART XML
+                echo "<br>11";
                 saveCart($cart, "add");
-//                echo "<br>3";
                 //--END
                 //(4) display
-//                echo "<br>brfore displayinh";
-                transformXsl("buyingCart.xsl");
-//                echo "<br>after displaying";
+                echo "<br>12";
+                transformXsl("showCart.xsl");
+                echo "<br>13";
             } else {
+                echo "<br>14";
                 //TODO : when click add and decrease 0
                 saveCart($cart, "add");
 //            // display
-                transformXsl("buyingCart.xsl");
+                echo "<br>15";
+                transformXsl("showCart.xsl");
+                echo "<br>16";
             }
         }
     }
@@ -98,24 +106,24 @@ if ($action == "confirm") {
     foreach ($arrGood as $good) {
         $itemNoXml = $good->getElementsByTagName('id')->item(0)->nodeValue;
         $quantityXml = $good->getElementsByTagName('quantity')->item(0)->nodeValue;
-        $onholdXml = $good->getElementsByTagName('onhold')->item(0)->nodeValue;
+        $quantityHoldXml = $good->getElementsByTagName('onhold')->item(0)->nodeValue;
         if ($itemNoXml == $newItemNo) {
             $good->getElementsByTagName('quantity')->item(0)->nodeValue = $quantityXml + 1; // -1 quantity
-            $good->getElementsByTagName('onhold')->item(0)->nodeValue = $onholdXml - 1; // +1 Hold
+            $good->getElementsByTagName('onhold')->item(0)->nodeValue = $quantityHoldXml - 1; // +1 Hold
             $xmlDoc->save($pathToGood);
         }
     }
     // edit cart.xml -1 quantity
     saveCart($cart, "remove");
     // display transform
-    transformXsl("buyingCart.xsl");
+    transformXsl("showCart.xsl");
 } else if ($action == "cancel") {
     performPurchase("cancel");
 } else if($action == "logout") {
     performPurchase("cancel");
     echo "Thanks for visiting out website. Your customer id is: ".$_SESSION["userid"];
 } else if($action =="m_logout") {
-    echo "Your email is: ".$_SESSION["email"];
+    echo "Your email id is: ".$_SESSION["email"];
 }
 
 function performPurchase($action) {
@@ -123,24 +131,29 @@ function performPurchase($action) {
     // UPDATE goods.xml
     foreach ($arrGood as $good) {
         $itemNoXml = $good->getElementsByTagName('id')->item(0)->nodeValue;
-        $onholdXml = $good->getElementsByTagName('onhold')->item(0)->nodeValue;
-        $soldXml = $good->getElementsByTagName('sold')->item(0)->nodeValue;
+        $quantityHoldXml = $good->getElementsByTagName('onhold')->item(0)->nodeValue;
+        $quantitySoldXml = $good->getElementsByTagName('sold')->item(0)->nodeValue;
         $quantityXml = $good->getElementsByTagName('quantity')->item(0)->nodeValue;
+//        $priceXml = $good->getElementsByTagName('price')->item(0)->nodeValue;
 
         foreach ($cart as $key => $value) {
             if ($key == $itemNoXml) {
-                $good->getElementsByTagName('onhold')->item(0)->nodeValue = $onholdXml - $value;
+                //confirm : - quanHold | + quan sold in cart session
+                //cancel : -hold | + quan avai
+                $good->getElementsByTagName('onhold')->item(0)->nodeValue = $quantityHoldXml - $value;
                 if ($action == "confirm") {
-                    $good->getElementsByTagName('sold')->item(0)->nodeValue = $soldXml + $value;
+                    $good->getElementsByTagName('sold')->item(0)->nodeValue = $quantitySoldXml + $value;
                 }
                 if ($action == "cancel") {
-
                     $good->getElementsByTagName('quantity')->item(0)->nodeValue = $quantityXml + $value;
+                    exit();
                 }
             }
         }
     }
 
+    //delete xml from cart -> save
+//    $goodXmlList = $docForCart->getElementsByTagName('good');
     $cartXml = $docForCart->getElementsByTagName('cart')->item(0);
     while ($cartXml->hasChildNodes()) {
         $cartXml->removeChild($cartXml->firstChild);
@@ -148,24 +161,27 @@ function performPurchase($action) {
     //update xml files
     $docForCart->save($pathToCart);
     $xmlDoc->save($pathToGood);
-    transformXsl("buyingCart.xsl");
+    transformXsl("showCart.xsl");
     // UPDATE CART
     $cart = array();
     $_SESSION["Cart"] = $cart;
 }
 
+//displayDump($cart);
+// $cartArr ~ cart session (itemno-quantity) |
+// $arrGood ~ all good from goods.xml (price)
 function saveCart($cartArr, $action) {
     global $xmlDoc, $pathToCart, $docForCart, $newItemNo, $cart;
     $root = $xmlDoc->documentElement;
     $arrGood = $root->getElementsByTagName('item');
     $cartXml = $docForCart->getElementsByTagName('cart')->item(0);
-
+    //(1)--START: GET price from good based on itemNo -> calculate total
     $priceFrGood = 0;
     $total = 0;
     foreach ($cartArr as $itemNo => $quantity) {
         foreach ($arrGood as $element) {
-            $idGood = $element->getElementsByTagName('id')->item(0)->nodeValue;
-            if ($itemNo == $idGood) {
+            $itemNumberGood = $element->getElementsByTagName('id')->item(0)->nodeValue;
+            if ($itemNo == $itemNumberGood) {
                 $priceFrGood = $element->getElementsByTagName('price')->item(0)->nodeValue;
                 $total += ($priceFrGood * $quantity);
             }
@@ -178,10 +194,10 @@ function saveCart($cartArr, $action) {
     if ($arrGoodInCart->length > 0) { // if exist good
         $quantityFoundInCart = 0;
         foreach ($arrGoodInCart as $good) {
-            $idFrCart = $good->getElementsByTagName('id')->item(0)->nodeValue;
+            $itemNumberFrCart = $good->getElementsByTagName('id')->item(0)->nodeValue;
             $quantityFrCart = $good->getElementsByTagName('quantity')->item(0)->nodeValue;
 
-            if ($idFrCart == $newItemNo) { // check equal to newItemNo if !equal -> create new good else increase
+            if ($itemNumberFrCart == $newItemNo) { // check equal to newItemNo if !equal -> create new good else increase
                 if ($action == "add") {
                     $flagEqual = true;
                     $good->getElementsByTagName('quantity')->item(0)->nodeValue = $quantityFrCart + 1;
@@ -215,15 +231,15 @@ function saveCart($cartArr, $action) {
         $totalXml = $cartXml->appendChild($docForCart->createElement('total'));
         $totalXml->appendChild($docForCart->createTextNode($total));
     }
-    $docForCart->save($pathToCart);
+    $docForCart->save("../../admin/cart.xml");
     //--END
 }
 
-function createGood($docForCart, $cart, $id, $priceFrGood, $quantity) {
-    $goodXml = $cart->appendChild($docForCart->createElement('good'));
+function createGood($docForCart, $cart, $itemNumber, $priceFrGood, $quantity) {
+    $goodXml = $cart->appendChild($docForCart->createElement('item'));
 
-    $idXml = $goodXml->appendChild($docForCart->createElement('id'));
-    $idXml->appendChild($docForCart->createTextNode($id));
+    $itemNumberXml = $goodXml->appendChild($docForCart->createElement('id'));
+    $itemNumberXml->appendChild($docForCart->createTextNode($itemNumber));
 
     $priceXml = $goodXml->appendChild($docForCart->createElement('price'));
     $priceXml->appendChild($docForCart->createTextNode($priceFrGood));
@@ -233,17 +249,19 @@ function createGood($docForCart, $cart, $id, $priceFrGood, $quantity) {
 }
 
 function transformXsl($name) {
-    global $pathToCart;
+    echo "<br>16";
     $xmlDoc = new DomDocument("1.0");
     $xmlDoc->formatOutput = true;
     $xmlDoc->preserveWhiteSpace = false;
-    $xmlDoc->load($pathToCart);
+
+    $xmlDoc->load("../../admin/cart.xml");
 
     $xslDoc = new DomDocument("1.0");
     $xslDoc->load($name);
 
     $proc = new XSLTProcessor;
     $proc->importStyleSheet($xslDoc);
+    echo "<br>17";
     echo $proc->transformToXML($xmlDoc);
 }
 

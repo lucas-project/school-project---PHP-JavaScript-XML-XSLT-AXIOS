@@ -14,18 +14,16 @@
                         <th>Quantity</th>
                         <th>Add</th>
                     </tr>
-
                     <tbody id="tblCatalog">
                     <xsl:for-each select="items/item">
+                        <xsl:variable name="itemNo" select="id"/>
                         <tr>
-                            <xsl:variable name="itemNo" select="id"/>
                             <td><xsl:value-of select="id" /></td>
                             <td><xsl:value-of select="name" /></td>
                             <td><xsl:value-of select="description" /></td>
                             <td><xsl:value-of select="price" /></td>
                             <td><xsl:value-of select="quantity" /></td>
                             <td><button onclick="addItemToCart({$itemNo});">Add one to cart</button></td>
-<!--                            <td><xsl:value-of select="add" /><button onclick="addItemToCart({$itemNo});">Add one to cart</button></td>-->
                         </tr>
                     </xsl:for-each>
                     </tbody>
