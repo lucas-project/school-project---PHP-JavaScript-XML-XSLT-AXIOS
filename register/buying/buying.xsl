@@ -1,49 +1,54 @@
-<?xml version="1.0"?><!-- DWXMLSource="../../admin/goods.xml" -->
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <xsl:output method="html"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
-        <HTML>
-            <HEAD>
-                <TITLE> Goods</TITLE>
-            </HEAD>
-            <BODY>
-                Item quantity greater than 0(quantity on hold or sold not included) : <BR/>
-
-<!--                <xsl:for-each select="//Unit[points &gt; 12.5]">-->
-<!--                    <span>-->
-<!--                        <xsl:attribute name="style">-->
-<!--                            <xsl:text>font-weight:bold;</xsl:text>-->
-<!--                        </xsl:attribute>-->
-<!--                        <xsl:value-of select="Faculty"/>-->
-<!--                    </span><br/>-->
-<!--                    <span>-->
-<!--                        <xsl:attribute name="style">-->
-<!--                            <xsl:text>color:red;</xsl:text>-->
-<!--                        </xsl:attribute>-->
-<!--                        <xsl:value-of select="group"/>-->
-<!--                    </span><br/>-->
-<!--                    <span><xsl:value-of select="points"/></span><br/>-->
-<!--                    <p></p>-->
-<!--                </xsl:for-each>-->
-
-                <xsl:for-each select="//item[quantity &gt; 0]">
-                    <span>
-                        <xsl:attribute name="style">
-                            <xsl:text>font-weight:bold;</xsl:text>
-                        </xsl:attribute>
-                        <xsl:value-of select="name"/>
-                    </span><br/>
-                    <span>
-                        <xsl:attribute name="style">
-                            <xsl:text>color:red;</xsl:text>
-                        </xsl:attribute>
-                        <xsl:value-of select="price"/>
-                    </span><br/>
-                    <span><xsl:value-of select="quantity"/></span><br/>
-                    <p></p>
-                </xsl:for-each>
-
-            </BODY>
-        </HTML>
+        <html>
+            <body>
+                <h2>Shopping Catalog</h2>
+                <table border="1">
+                    <tr bgcolor="#18dfd3">
+                        <th>Item Number</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Add</th>
+                    </tr>
+                    <xsl:for-each select="items/item">
+                        <tr>
+                            <td><xsl:value-of select="id" /></td>
+                            <td><xsl:value-of select="name" /></td>
+                            <td><xsl:value-of select="description" /></td>
+                            <td><xsl:value-of select="price" /></td>
+                            <td><xsl:value-of select="quantity" /></td>
+                            <td><xsl:value-of select="add" /><button>Add one to cart</button></td>
+                        </tr>
+                    </xsl:for-each>
+                </table>
+                <br/>
+                <br/>
+                <h2>Shopping Cart</h2>
+                <table border="1">
+                    <tr bgcolor="#18dfd3">
+                        <th>Item Number</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Remove</th>
+                    </tr>
+                    <xsl:for-each select="items/item">
+                        <tr>
+                            <td><xsl:value-of select="id" /></td>
+                            <td><xsl:value-of select="price" /></td>
+                            <td><xsl:value-of select="quantity" /></td>
+                            <td><xsl:value-of select="add" /><button>Remove from cart</button></td>
+                        </tr>
+                    </xsl:for-each>
+                    <tr><td>Total:</td><td id="total"></td></tr>
+                    <tr><td><button>Confirm Purchase</button></td><td><button>Cancel Purchase</button></td></tr>
+                </table>
+                <script type="text/javascript" src="buying.js">&#160;</script>
+            </body>
+        </html>
     </xsl:template>
 </xsl:stylesheet>
+

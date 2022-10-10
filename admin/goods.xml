@@ -9,4 +9,14 @@
     <onhold>0</onhold>
     <sold>0</sold>
   </item>
+  <item>
+    <id>1665352642129</id>
+    <name>Make the world bette</name>
+    <price>545</price>
+    <quantity>65</quantity>
+    <description>A small machine</description>
+    <onhold>0</onhold>
+    <sold>0</sold>
+    <add></add>
+  </item>
 </items>

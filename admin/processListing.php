@@ -45,6 +45,7 @@ header('Content-Type: text/xml');
             $doc->load($xmlfile);
         }
         $items = $doc->getElementsByTagName("items");
+        $add = "";
 
         echo "else";
         //create a item node under items node
@@ -93,9 +94,18 @@ header('Content-Type: text/xml');
         $item->appendChild($Sold);
         $soldValue = $doc->createTextNode($sold);
         $Sold->appendChild($soldValue);
+
+        //create an add button
+        $Add = $doc->createElement('add');
+        $item->appendChild($Add);
+        $addValue = $doc->createTextNode($add);
+        $Add->appendChild($addValue);
+
         //save the xml file
         $doc->formatOutput = true;
         $doc->save($xmlfile);
+
+
 
         echo "The item has been listed in the system, and the item number is: ".$id;
 
