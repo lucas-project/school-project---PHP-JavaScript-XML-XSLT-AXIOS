@@ -88,6 +88,7 @@ if ($action == "confirm") {
             }
         }
     }
+    echo "4";
 } else if ($action == "remove") {
     // Remove in cart session
     global $cart;

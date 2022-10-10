@@ -5,7 +5,7 @@
     <price>545</price>
     <quantity>1</quantity>
   </good>
-  <total>69635</total>
+  <total>238905</total>
   <good>
     <id>1665352642129</id>
     <price>545</price>
@@ -40,5 +40,25 @@
     <id>1665292000166</id>
     <price>60000</price>
     <quantity>1</quantity>
+  </good>
+  <good>
+    <id>1665292000166</id>
+    <price>545</price>
+    <quantity>4</quantity>
+  </good>
+  <good>
+    <id>1665377883099</id>
+    <price>2000</price>
+    <quantity>-1</quantity>
+  </good>
+  <good>
+    <id>1665377883099</id>
+    <price>2000</price>
+    <quantity>-2</quantity>
+  </good>
+  <good>
+    <id>1665377883099</id>
+    <price>2000</price>
+    <quantity>-3</quantity>
   </good>
 </cart>

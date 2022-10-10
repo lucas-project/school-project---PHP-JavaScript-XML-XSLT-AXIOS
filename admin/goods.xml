@@ -4,9 +4,9 @@
     <id>1665292000166</id>
     <name>buy grocery</name>
     <price>60000</price>
-    <quantity>37</quantity>
+    <quantity>36</quantity>
     <description>fsdafds</description>
-    <onhold>-3</onhold>
+    <onhold>-2</onhold>
     <sold>0</sold>
     <total>0</total>
   </item>
@@ -25,9 +25,9 @@
     <id>1665377883099</id>
     <name>Atom Tig</name>
     <price>2000</price>
-    <quantity>26</quantity>
+    <quantity>29</quantity>
     <description>fsdafdsffffffffffffff</description>
-    <onhold>4</onhold>
+    <onhold>1</onhold>
     <sold>0</sold>
     <add/>
     <total>0</total>
