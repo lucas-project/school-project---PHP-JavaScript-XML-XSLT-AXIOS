@@ -8,7 +8,7 @@
     -->
     <xsl:template match="/">
         <h2 style="margin-top:30px;"> Shopping Cart</h2>
-        <table class="table table-striped" >
+        <table class="table table-striped" border="1">
             <thead>
                 <tr>
                     <th>Item number</th>
@@ -19,10 +19,10 @@
             </thead>
             <tbody id="tblCart">
                 <xsl:for-each select="/cart/good">
-                    <xsl:variable name="itemNo" select="itemNumber"/>
+                    <xsl:variable name="itemNo" select="id"/>
                     <tr>
                         <td>
-                            <xsl:value-of select="itemNumber"/>
+                            <xsl:value-of select="id"/>
                         </td>
                         <td>
                             $<xsl:value-of select="price"/>
@@ -46,5 +46,4 @@
             </tbody>
         </table>
     </xsl:template>
-
 </xsl:stylesheet>

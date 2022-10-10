@@ -27,6 +27,7 @@ header('Content-Type: text/xml');
     $id = $_GET["id"];
     $onhold = 0;
     $sold = 0;
+    $total = 0;
     if ($err_msg != "") {
         echo $err_msg;
     }
@@ -100,6 +101,12 @@ header('Content-Type: text/xml');
         $item->appendChild($Add);
         $addValue = $doc->createTextNode($add);
         $Add->appendChild($addValue);
+
+        //create an add button
+        $Total = $doc->createElement('total');
+        $item->appendChild($Total);
+        $totalValue = $doc->createTextNode($total);
+        $Total->appendChild($totalValue);
 
         //save the xml file
         $doc->formatOutput = true;

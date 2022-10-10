@@ -14,38 +14,43 @@
                         <th>Quantity</th>
                         <th>Add</th>
                     </tr>
+
+                    <tbody id="tblCatalog">
                     <xsl:for-each select="items/item">
                         <tr>
+                            <xsl:variable name="itemNo" select="id"/>
                             <td><xsl:value-of select="id" /></td>
                             <td><xsl:value-of select="name" /></td>
                             <td><xsl:value-of select="description" /></td>
                             <td><xsl:value-of select="price" /></td>
                             <td><xsl:value-of select="quantity" /></td>
-                            <td><xsl:value-of select="add" /><button>Add one to cart</button></td>
+                            <td><button onclick="addItemToCart({$itemNo});">Add one to cart</button></td>
+<!--                            <td><xsl:value-of select="add" /><button onclick="addItemToCart({$itemNo});">Add one to cart</button></td>-->
                         </tr>
                     </xsl:for-each>
+                    </tbody>
                 </table>
                 <br/>
                 <br/>
-                <h2>Shopping Cart</h2>
-                <table border="1">
-                    <tr bgcolor="#18dfd3">
-                        <th>Item Number</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Remove</th>
-                    </tr>
-                    <xsl:for-each select="items/item">
-                        <tr>
-                            <td><xsl:value-of select="id" /></td>
-                            <td><xsl:value-of select="price" /></td>
-                            <td><xsl:value-of select="quantity" /></td>
-                            <td><xsl:value-of select="add" /><button>Remove from cart</button></td>
-                        </tr>
-                    </xsl:for-each>
-                    <tr><td>Total:</td><td id="total"></td></tr>
-                    <tr><td><button>Confirm Purchase</button></td><td><button>Cancel Purchase</button></td></tr>
-                </table>
+<!--                <h2>Shopping Cart</h2>-->
+<!--                <table border="1">-->
+<!--                    <tr bgcolor="#18dfd3">-->
+<!--                        <th>Item Number</th>-->
+<!--                        <th>Price</th>-->
+<!--                        <th>Quantity</th>-->
+<!--                        <th>Remove</th>-->
+<!--                    </tr>-->
+<!--                    <xsl:for-each select="items/item">-->
+<!--                        <tr>-->
+<!--                            <td><xsl:value-of select="id" /></td>-->
+<!--                            <td><xsl:value-of select="price" /></td>-->
+<!--                            <td><xsl:value-of select="quantity" /></td>-->
+<!--                            <td><xsl:value-of select="add" /><button>Remove from cart</button></td>-->
+<!--                        </tr>-->
+<!--                    </xsl:for-each>-->
+<!--                    <tr><td>Total:</td><td id="total"></td></tr>-->
+<!--                    <tr><td><button>Confirm Purchase</button></td><td><button>Cancel Purchase</button></td></tr>-->
+<!--                </table>-->
                 <script type="text/javascript" src="buying.js">&#160;</script>
             </body>
         </html>
