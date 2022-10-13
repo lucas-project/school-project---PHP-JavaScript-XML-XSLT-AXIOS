@@ -1,9 +1,2 @@
 <?xml version="1.0"?>
-<cart>
-  <total>180000</total>
-  <item>
-    <id>1665292000166</id>
-    <price>60000</price>
-    <quantity>3</quantity>
-  </item>
-</cart>
+<cart/>

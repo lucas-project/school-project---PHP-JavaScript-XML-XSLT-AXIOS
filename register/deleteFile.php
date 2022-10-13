@@ -1,9 +1,4 @@
 <?php
-/*
-	Author: Wei Lai
-	Date: 9/10/2018
-*/
-
 header('Content-Type: text/xml');
 
 $xmlfile = './register.xml';

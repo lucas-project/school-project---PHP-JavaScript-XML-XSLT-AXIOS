@@ -3,19 +3,19 @@
   <item>
     <id>1665292000166</id>
     <name>buy grocery</name>
-    <price>60000</price>
-    <quantity>31</quantity>
+    <price>1</price>
+    <quantity>996</quantity>
     <description>fsdafds</description>
-    <onhold>-9</onhold>
+    <onhold>66</onhold>
     <sold>12</sold>
   </item>
   <item>
     <id>1665352642129</id>
     <name>Make the world bette</name>
-    <price>545</price>
-    <quantity>63</quantity>
+    <price>1</price>
+    <quantity>1095</quantity>
     <description>A small machine</description>
-    <onhold>-7</onhold>
+    <onhold>83</onhold>
     <sold>9</sold>
     <add/>
   </item>

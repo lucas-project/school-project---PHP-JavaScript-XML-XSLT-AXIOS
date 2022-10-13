@@ -43,7 +43,7 @@ function testXML() {
     if ((xhr.readyState == 4) && (xhr.status == 200)) {
         //var xmlDoc = xhr.responseXML;
         var xmlDoc = xhr.responseText;
-        alert(xmlDoc);
+       // alert(xmlDoc);
     }
 }
 

@@ -1,4 +1,4 @@
-var xHRObject = false;
+let xHRObject = false;
 
 if (window.ActiveXObject) {
     xHRObject = new ActiveXObject("Microsoft.XMLHTTP");
@@ -23,107 +23,113 @@ function getData()
 setInterval(getResults,5000);
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//添加商品到购物车
 function addItemToCart(itemNo) {
-    // alert("here");
+    //获取空间
     document.getElementById('messageCatalog').className = "";
     document.getElementById("messageCatalog").innerHTML = "";
-    // decrease quantity 1
-    var table = document.getElementById("tblCatalog");
-    var rows = table.getElementsByTagName("tr");
-    var row;
+    let table = document.getElementById("tblCatalog");
+    let rows = table.getElementsByTagName("tr");
+    let row;
     console.log("1");
-    for (var i = 0; i < rows.length; i++) {
+
+    //直接从后台返回的表格里拿id，用于发送请求
+    for (let i = 0; i < rows.length; i++) {
         console.log("2");
         if (parseInt(rows[i].cells[0].innerHTML) == parseInt(itemNo)) {
             row = rows[i];
         }
     }
-//                var row = table.getElementsByTagName("tr")[itemNo];
     console.log("3");
-    var oldQuantity = row.getElementsByTagName("td")[4].innerHTML;
+    //检查商店商品数量
+    let oldQuantity = row.getElementsByTagName("td")[4].innerHTML;
+    //如果商店还有存货
     if (oldQuantity > 0) {
         console.log("4");
-        row.getElementsByTagName("td")[4].innerHTML = oldQuantity - 1;
+        // row.getElementsByTagName("td")[4].innerHTML = oldQuantity - 1;
         xHRObject.open("GET", "showCart.php?id=" + Number(new Date) + "&itemNumber=" + itemNo + "&action=add", true);
         xHRObject.onreadystatechange = function () {
             if (xHRObject.readyState == 4 && xHRObject.status == 200) {
-                var response = xHRObject.responseText;
+                let response = xHRObject.responseText;
                 document.getElementById('cart').innerHTML = response;
             }
         }
         xHRObject.send(null);
     } else {
-        document.getElementById('messageCatalog').className = "alert alert-danger";
         document.getElementById("messageCatalog").innerHTML = "Sorry this item is not available for sale";
     }
     // end
 }
 
+//从购物车移除商品
 function removeItemFromCart(itemNo) {
-    // increase quantity 1
-    var table = document.getElementById("tblCatalog");
-//                var row = table.getElementsByTagName("tr")[itemNo];
-    var rows = table.getElementsByTagName("tr");
-    var row;
-    for (var i = 0; i < rows.length; i++) {
+    // 从商店表格获取商品信息
+    let table = document.getElementById("tblCatalog");
+    let rows = table.getElementsByTagName("tr");
+    let row;
+    for (let i = 0; i < rows.length; i++) {
         if (parseInt(rows[i].cells[0].innerHTML) == parseInt(itemNo)) {
             row = rows[i];
         }
     }
-    var oldQuantity = row.getElementsByTagName("td")[4].innerHTML;
+    //每remove一次商店存货增加1，相当于直接修改html的显示了
+    let oldQuantity = row.getElementsByTagName("td")[4].innerHTML;
     row.getElementsByTagName("td")[4].innerHTML = parseInt(oldQuantity) + 1;
-    // end
 
     xHRObject.open("GET", "showCart.php?id=" + Number(new Date) + "&itemNumber=" + itemNo + "&action=remove", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
-            var response = xHRObject.responseText;
+            let response = xHRObject.responseText;
             document.getElementById('cart').innerHTML = response;
         }
     }
     xHRObject.send(null);
 }
 
+//确认购买
 function confirmPurchase() {
-    //delete session
-    // goods.xml- quanHold | + quan sold in cart session
-    // -> amount to pay
-    // clear shopping
     xHRObject.open("GET", "showCart.php?id=" + Number(new Date) + "&action=confirm", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
-            var response = xHRObject.responseText;
+            let response = xHRObject.responseText;
             document.getElementById('cart').innerHTML = response;
         }
     }
     xHRObject.send(null);
 }
 
+//取消购物车
 function cancelPurchase() {
-    // change catalog: increase quantity in the catalog
-    var tblCart = document.getElementById("tblCart");
-    var cartLength = tblCart.getElementsByTagName("tr").length - 2;
+    // find how many item in cart based on tr quantity
+    let tblCart = document.getElementById("tblCart");
+    let cartLength = tblCart.getElementsByTagName("tr").length - 2;
 
-    var tblCatalog = document.getElementById("tblCatalog");
-    var catalogLength = tblCatalog.getElementsByTagName("tr").length;
-    var rowsOfCatalog = tblCatalog.getElementsByTagName("tr");
-    for (var i = 0; i < cartLength; i++) {
-        var rowOfCart = tblCart.getElementsByTagName("tr")[i];
-        var quantityOfCart = rowOfCart.getElementsByTagName("td")[2].innerHTML;
-        var itemNoOfCart = rowOfCart.getElementsByTagName("td")[0].innerHTML;
-        // find row with itemNo in catalog
-        for (var j = 0; j < catalogLength; j++) {
+    let tblCatalog = document.getElementById("tblCatalog");
+    let rowsOfCatalog = tblCatalog.getElementsByTagName("tr");
+    let catalogLength = tblCatalog.getElementsByTagName("tr").length;
+
+    //扫描购物车获取商品种类和计算商店应该恢复的数量
+    for (let i = 0; i < cartLength; i++) {
+        let rowOfCart = tblCart.getElementsByTagName("tr")[i];
+        //quantity of the item
+        let quantityOfCart = rowOfCart.getElementsByTagName("td")[2].innerHTML;
+        //id of the item
+        let itemNoOfCart = rowOfCart.getElementsByTagName("td")[0].innerHTML;
+        //add quantity in cart with quantity in store to get the total number
+        for (let j = 0; j < catalogLength; j++) {
             if (rowsOfCatalog[j].getElementsByTagName("td")[0].innerHTML == itemNoOfCart) {
-                rowsOfCatalog[j].getElementsByTagName("td")[4].innerHTML = parseInt(rowsOfCatalog[j].getElementsByTagName("td")[4].innerHTML) + parseInt(quantityOfCart);
+                let storeQuan = parseInt(rowsOfCatalog[j].getElementsByTagName("td")[4].innerHTML);
+                let cartQuan = parseInt(quantityOfCart);
+                storeQuan += cartQuan;
             }
         }
     }
 
-    // ajax for update card by xml
-    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) + "&action=cancel", true);
+    // 把算好的数量发给后台更新xml
+    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) +"&storequan"+storeQuan+ "&action=cancel", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
-            var response = xHRObject.responseText;
+            let response = xHRObject.responseText;
             document.getElementById('cart').innerHTML = response;
         }
     }
