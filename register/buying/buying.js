@@ -5,7 +5,7 @@ if (window.ActiveXObject) {
 } else if (window.XMLHttpRequest) {
     xHRObject = new XMLHttpRequest();
 }
-
+//展示购物车
 function getResults(){
     xHRObject.open("POST", "buying.php?id=" + Number(new Date), true);
     xHRObject.onreadystatechange = getData;
@@ -20,7 +20,8 @@ function getData()
         document.getElementById('results').innerHTML = xHRObject.responseText;
     }
 }
-setInterval(getResults,5000);
+setInterval(getResults,2000);
+
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 //添加商品到购物车
@@ -109,6 +110,8 @@ function cancelPurchase() {
     let rowsOfCatalog = tblCatalog.getElementsByTagName("tr");
     let catalogLength = tblCatalog.getElementsByTagName("tr").length;
 
+    let storeQuan = 0;
+    let cartQuan = 0;
     //扫描购物车获取商品种类和计算商店应该恢复的数量
     for (let i = 0; i < cartLength; i++) {
         let rowOfCart = tblCart.getElementsByTagName("tr")[i];
@@ -119,14 +122,14 @@ function cancelPurchase() {
         //add quantity in cart with quantity in store to get the total number
         for (let j = 0; j < catalogLength; j++) {
             if (rowsOfCatalog[j].getElementsByTagName("td")[0].innerHTML == itemNoOfCart) {
-                let storeQuan = parseInt(rowsOfCatalog[j].getElementsByTagName("td")[4].innerHTML);
-                let cartQuan = parseInt(quantityOfCart);
+                storeQuan = parseInt(rowsOfCatalog[j].getElementsByTagName("td")[4].innerHTML);
+                cartQuan = parseInt(quantityOfCart);
                 storeQuan += cartQuan;
             }
         }
     }
     // 把算好的数量发给后台更新xml
-    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) +"&action=cancel", true);
+    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) +"&storeQuan="+storeQuan+"&cartQuan="+cartQuan+"&action=cancel", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
             let response = xHRObject.responseText;

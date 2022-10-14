@@ -13,6 +13,14 @@ if (array_key_exists("itemNumber", $_GET)) {
 } else {
     $addedItemId = "0";
 }
+
+if (array_key_exists("storeQuan", $_GET)) {
+    $addedItemId = $_GET["storeQuan"];
+}
+
+if (array_key_exists("cartQuan", $_GET)) {
+    $addedItemId = $_GET["cartQuan"];
+}
 if (array_key_exists("Cart", $_SESSION)) {
     $cart = $_SESSION["Cart"];
 } else {
@@ -58,6 +66,7 @@ if ($action == "confirm") {
         $xmlQuantity = $good->getElementsByTagName('quantity')->item(0)->nodeValue;
         $xmlOnhold = $good->getElementsByTagName('onhold')->item(0)->nodeValue;
         echo "<br>3";
+
         //1. 如果前端传过来的id匹配上了
         if ($xmlItemId == $addedItemId) {
             echo "<br>4";
@@ -68,7 +77,7 @@ if ($action == "confirm") {
                 if (count($cart) >= 0) {
                     //SESSION里该商品增加 1
                     $cart[$addedItemId] += 1;
-                    echo "<br>6";
+                    echo "<br>".$cart[$addedItemId];
                 } else {
                         //如果不存在就将购物车数量设为 1
                         $cart[$addedItemId] = 1;
@@ -78,7 +87,7 @@ if ($action == "confirm") {
 
                 echo "<br>10";
                 //修改商店里的数量并保存
-                $good->getElementsByTagName('quantity')->item(0)->nodeValue -= 1; // -1 quantity
+                $good->getElementsByTagName('quantity')->item(0)->nodeValue =$xmlQuantity-1; // -1 quantity
                 $good->getElementsByTagName('onhold')->item(0)->nodeValue += 1; // +1 Hold
                 $xmlDoc->save($pathToGood);
 
@@ -145,15 +154,21 @@ function logoutCancelConfirmHandle($action) {
 
         //拆解购物车,key是商品id，cartQuantity是买了多少
         foreach ($cart as $key => $cartQuantity) {
+            echo "<br/>cancel ".$key;
+            echo "<br/>xmlOnhold ".$xmlOnhold;
             //把购物车里商品和商店的对比
             if ($key == $xmlItemId) {
+                echo "<br/>inside ".$key;
                 //confirm : - onhold | + sold in cart session
                 //cancel : -hold | + available
 //                $xmlOnhold = $xmlOnhold - $cartQuantity;
                 if ($action == "confirm") {
                     $xmlSold = $xmlSold + $cartQuantity;
+                    echo "<br/>xmlSold ".$xmlSold;
                 } else if ($action == "cancel") {
-                    $xmlQuantity = $xmlQuantity + $cartQuantity;
+                    $good->getElementsByTagName('quantity')->item(0)->nodeValue = $xmlQuantity + $cartQuantity;
+                    echo "<br/>xmlQuantity ".$xmlQuantity;
+
                     //检查前端是否传了一个参数叫storeQuan，代表的是表格上读取的商店数量，有的话存进SESSION
                     $storeQuan =0;
 //                    if (array_key_exists("storequan", $_GET)) {
