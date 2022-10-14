@@ -25,6 +25,7 @@ setInterval(getResults,5000);
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 //添加商品到购物车
 function addItemToCart(itemNo) {
+
     //获取空间
     document.getElementById('messageCatalog').className = "";
     document.getElementById("messageCatalog").innerHTML = "";
@@ -124,13 +125,13 @@ function cancelPurchase() {
             }
         }
     }
-
     // 把算好的数量发给后台更新xml
-    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) +"&storequan"+storeQuan+ "&action=cancel", true);
+    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) +"&action=cancel", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
             let response = xHRObject.responseText;
             document.getElementById('cart').innerHTML = response;
+
         }
     }
     xHRObject.send(null);
