@@ -39,15 +39,15 @@ $arrGood = $root->getElementsByTagName('item');
 $docForCart = new DomDocument("1.0");
 $docForCart->formatOutput = true;
 $docForCart->preserveWhiteSpace = false;
-echo "<br>before create";
+//echo "<br>before create";
 $xmlfile='../../admin/cart.xml';
 //如果指定路径不存在就创建一个xml
 if (!file_exists($xmlfile)) {
     createXML($docForCart);
     $docForCart->load($pathToCart);
-    echo "<br>after create";
+//    echo "<br>after create";
 } else {
-    echo "<br>create else";
+//    echo "<br>create else";
     $docForCart->load($xmlfile);
 }
 
@@ -58,23 +58,23 @@ if ($action == "confirm") {
     logoutCancelConfirmHandle("confirm");
     //前端执行add时
 } else if ($action == "add") {
-    echo "<br>1";
+//    echo "<br>1";
     foreach ($arrGood as $good) {
-        echo "<br>2";
+//        echo "<br>2";
         //从goods.xml拿数据
         $xmlItemId = $good->getElementsByTagName('id')->item(0)->nodeValue;
         $xmlQuantity = $good->getElementsByTagName('quantity')->item(0)->nodeValue;
         $xmlOnhold = $good->getElementsByTagName('onhold')->item(0)->nodeValue;
-        echo "<br>3";
+//        echo "<br>3";
 
         //1. 如果前端传过来的id匹配上了
         if ($xmlItemId == $addedItemId) {
-            echo "<br>4";
+//            echo "<br>4";
             //2. 匹配上以后检查商店有没有该物品，大于0
             if ($xmlQuantity > 0) {
-                echo "<br>5";
+//                echo "<br>5";
                 //如果商店里还有的卖，看购物车里是不是， 已存在
-                if (count($cart) >= 0) {
+                if (isset($cart)&& count($cart) >= 0) {
                     //SESSION里该商品增加 1
                     $cart[$addedItemId] += 1;
                     echo "<br>".$cart[$addedItemId];
@@ -85,25 +85,24 @@ if ($action == "confirm") {
                 //更新SESSION里的购物车
                 $_SESSION["Cart"] = $cart; // (4)update cart
 
-                echo "<br>10";
+//                echo "<br>10";
                 //修改商店里的数量并保存
                 $good->getElementsByTagName('quantity')->item(0)->nodeValue =$xmlQuantity-1; // -1 quantity
                 $good->getElementsByTagName('onhold')->item(0)->nodeValue += 1; // +1 Hold
                 $xmlDoc->save($pathToGood);
 
                 //修改完商店的来修改购物车里的数量
-                echo "<br>11";
+//                echo "<br>11";
                 saveCart($cart, "add");
                 //展示更新后的数据
-                echo "<br>12";
+//                echo "<br>12";
                 transformXsl("showCart.xsl");
 
             } else {
                 echo "<br>sorry, this item sold out.";
-                //TODO : when click add and decrease 0
                 saveCart($cart, "add");
                 //展示更新后的数据
-                echo "<br>15";
+//                echo "<br>15";
                 transformXsl("showCart.xsl");
             }
         }
@@ -154,13 +153,11 @@ function logoutCancelConfirmHandle($action) {
 
         //拆解购物车,key是商品id，cartQuantity是买了多少
         foreach ($cart as $key => $cartQuantity) {
-            echo "<br/>cancel ".$key;
-            echo "<br/>xmlOnhold ".$xmlOnhold;
+//            echo "<br/>cancel ".$key;
+//            echo "<br/>xmlOnhold ".$xmlOnhold;
             //把购物车里商品和商店的对比
             if ($key == $xmlItemId) {
-                echo "<br/>inside ".$key;
-                //confirm : - onhold | + sold in cart session
-                //cancel : -hold | + available
+//                echo "<br/>inside ".$key;
 //                $xmlOnhold = $xmlOnhold - $cartQuantity;
                 if ($action == "confirm") {
                     $xmlSold = $xmlSold + $cartQuantity;

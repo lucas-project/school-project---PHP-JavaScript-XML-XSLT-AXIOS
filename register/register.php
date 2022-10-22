@@ -32,7 +32,7 @@ if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]
 	}
 	
 	if (empty($email)) {
-			$err_msg .= "You must enter an email id. <br />";
+			$err_msg .= "You must enter an email address. <br />";
 	}
 
 

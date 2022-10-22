@@ -4,24 +4,6 @@ ob_start();
 session_start();
 ?>
 
-<HTML XMLns="http://www.w3.org/1999/xHTML">
-<head>
-    <title>Admin login</title>
-</head>
-<body>
-<H1>Login here as Admin</H1>
-
-<form>
-    <br>
-    <label>User Name: <input type="text" name="inputName"></label>
-    <br>
-    <br>
-    <label>Password: <input type="text" name="password"></label>
-    <br>
-    <br>
-    <input type="submit" value="Login" />
-</form>
-</body>
 
 <?php
 $file = "./manager.txt";
@@ -57,12 +39,13 @@ else {
 //        }
         if ($temp == $name){
             if (strcmp(trim($curBowler[1]), trim($password)==0)){
-                $_SESSION['username']=$name;
-                echo "Hi,".$name.", you are successfully logined<br>";
-                echo "<br>Choose an operation below:";
+                $_SESSION['managerid']=$name;
+                setcookie("managerid",$name);
+                echo "You are successfully logined in, your manager id is ".$name;
+                echo "<h4>Choose an operation below:</h4><br>";
                 echo "<br><br><button><a href='processing.htm'>processing page</a></button><br>";
                 echo "<br><button><a href='listing.htm'>listing page</a></button>";
-                echo "<br><button><a href='mlogout.php'>logout</a></button>";
+                echo "<br><br><button><a href='mlogout.php'>logout</a></button>";
                 break;
             }else {
 //                echo $name." ".$curBowler[1];

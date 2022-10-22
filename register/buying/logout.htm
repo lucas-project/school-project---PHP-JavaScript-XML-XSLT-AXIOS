@@ -1,0 +1,46 @@
+<!--logout page-->
+<!--For users to logout to their accounts-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/09/2022-->
+<!--<?php-->
+<!--ob_start();-->
+<!--session_start();-->
+<!--echo "<br>Thanks for using our BuyOnline system,".$_SESSION["userid"].".<br>";-->
+<!--unset($_SESSION["userid"]);-->
+<!--echo "<br><button><a href='../login.htm'>login</a></button><br>";-->
+<!--echo "<br><button><a href='../../buyonline.htm'>return to homepage</a></button><br>";-->
+<!--?>-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>customer logout</title>
+</head>
+<body>
+<div id="thanks"></div>
+<script>
+    function getCookie(cookieName) {
+        let name = cookieName + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+  let username = getCookie("email")
+    let userid = getCookie("userid")
+    document.getElementById("thanks").innerHTML = "Thank you for using BuyOnline, your email is "+username+", your customer id is "+ userid+".";
+</script>
+
+    <br><button><a href='../login.htm'>login</a></button><br>
+<br><button><a href='../../buyonline.htm'>return to homepage</a></button><br>
+</body>
+</html>

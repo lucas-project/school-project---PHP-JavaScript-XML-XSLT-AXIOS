@@ -19,11 +19,11 @@
                 </tr>
             </thead>
             <tbody>
-                <xsl:for-each select="/goods/good">
-                    <xsl:if test = 'quantitySold &gt; 0'>
+                <xsl:for-each select="/items/item">
+                    <xsl:if test = 'sold &gt; 0'>
                         <tr>
                             <th scope="row">
-                                <xsl:value-of select="itemNumber"/>
+                                <xsl:value-of select="id"/>
                             </th>
                             <td>
                                 <xsl:value-of select="name"/>
@@ -35,10 +35,10 @@
                                 <xsl:value-of select="quantity"/>
                             </td>
                             <td>
-                                <xsl:value-of select="quantityHold"/>
+                                <xsl:value-of select="onhold"/>
                             </td>
                             <td>
-                                <xsl:value-of select="quantitySold"/>
+                                <xsl:value-of select="sold"/>
                             </td>
                         </tr>
                     </xsl:if>

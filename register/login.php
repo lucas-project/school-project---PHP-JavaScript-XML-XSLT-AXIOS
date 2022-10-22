@@ -1,4 +1,6 @@
 <?php
+ob_start();
+session_start();
 if(isset($_GET["email"]) && isset($_GET["password"])) {
     $err_msg = "";
     function sanitise_input($data)
@@ -42,8 +44,14 @@ if(isset($_GET["email"]) && isset($_GET["password"])) {
                 $idValue = $ids->item($i)->nodeValue;
                 $_SESSION["userid"] = $idValue;
                 $_SESSION["email"]=$emailValue;
+                setcookie("userid",$idValue);
+                setcookie("emial",$emailValue);
                 echo "Your email address is ".$_SESSION['email'].", and you customer id is ".$_SESSION['userid']."<br>";
-                echo "<br><a href='./buying/buying.htm'>buuying page</a>";
+//                if (isset($_COOKIE["userid"])){
+//                    echo "Cookie is".$_COOKIE["userid"];
+//                }
+
+                echo "<br><a href='./buying/buying.htm'>buying page</a>";
                 array_push($correctmsg,"successfully");
                 break;
             } else {

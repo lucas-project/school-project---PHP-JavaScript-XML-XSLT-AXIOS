@@ -9,47 +9,91 @@
 	<title>Customer Registration</title>
 </head>
 <body>
+<style>
+	#titles {
+		width:800px;
+		height: 100px;
+		background: bisque;
+		justify-content: center;
+		margin:auto;
+		padding: 0.2rem;
+	}
+	#buttons {
+		width:800px;
+		height: 300px;
+		background: beige;
+		justify-content: center;
+		margin:auto;
+		padding: 0.2rem;
+	}
+	#inButtons {
+		padding: 5%;
+		width: 40%;
+		height: auto;
+		margin:auto;
+	}
+	h1,p {
+		margin-left:230px;
+	}
+	#bottom {
+		width: 800px;
+		height: 20px;
+		background: bisque;
+		margin:auto;
+	}
+</style>
+<div id="titles">
 	<h1>Customer Register</h1>
 	<p>Register here as customer</p>
+</div>
+	<div id="buttons">
+		<div id="inButtons">
+			<table>
+				<tr>
+					<td><label for="firstname">first name: </label></td>
+					<td><input type="text" name="firstname" id="firstname" /></td>
+				</tr>
+				<tr>
+					<td><label for="lastname">last name: </label></td>
+					<td><input type="text" name="lastname" id="lastname" /></td>
+				</tr>
+				<tr>
+					<td><label for="email">Email: </label></td>
+					<td><input type="text" name="email" id="email" /></td>
+				</tr>
+				<div id="information">
+					<tr>
+						<td><label for="phone">Phone(optional): </label></td>
+						<td><input type="text" name="phone" id="phone" /></td>
+					</tr>
+					<tr>
+						<td><label for="password">Password: </label></td>
+						<td><input type="password" name="password" id="password" /></td>
+					</tr>
+					<tr>
+						<td><label for="confirmpassword">Confirm Password: </label></td>
+						<td><input type="password" name="confirmpassword" id="confirmpassword" /></td>
+					</tr>
 
-		<table>
-			<tr>
-				<td><label for="firstname">first name: </label></td>
-				<td><input type="text" name="firstname" id="firstname" /></td>
-			</tr>
-			<tr>
-				<td><label for="lastname">last name: </label></td>
-				<td><input type="text" name="lastname" id="lastname" /></td>
-			</tr>
-			<tr>
-				<td><label for="email">Email: </label></td>
-				<td><input type="text" name="email" id="email" /></td>
-			</tr>
-			<div id="information">
-			<tr>
-				<td><label for="phone">Phone(optional): </label></td>
-				<td><input type="text" name="phone" id="phone" /></td>
-			</tr>
-			<tr>
-				<td><label for="password">Password: </label></td>
-				<td><input type="password" name="password" id="password" /></td>
-			</tr>
-			<tr>
-				<td><label for="confirmpassword">Confirm Password: </label></td>
-				<td><input type="password" name="confirmpassword" id="confirmpassword" /></td>
-			</tr>
-			
-			<tr>
-				<td><button onclick="clearForm();">Reset</button></td>
-				<td><button onclick="testGet();">Register</button></td>
-			</tr>
-			
-			<tr>
-				<td><button onclick="deleteXML();">Delete the file</button></td>
-				<td><button onclick="getXML();">Get the XML file</button></td>
-			</tr>
-			</div>
-		</table>
-	<p id="msg"></p>
+					<tr>
+						<td><button onclick="clearForm();">Reset</button></td>
+						<td><button onclick="testGet();">Register</button></td>
+					</tr>
+
+					<!--			<tr>-->
+					<!--				<td><button onclick="deleteXML();">Delete the file</button></td>-->
+					<!--				<td><button onclick="getXML();">Get the XML file</button></td>-->
+					<!--			</tr>-->
+				</div>
+			</table>
+
+			<p id="msg"></p>
+			<br><a href="../buyonline.htm">return to homepage</a>
+		</div>
+	</div>
+	<div id="bottom">
+		Project 2, 103527269, Lucas Qin
+	</div>
+
 </body>
 </html>
