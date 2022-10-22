@@ -95,7 +95,7 @@ function confirmPurchase() {
     let rows = table.getElementsByTagName("tr");
 
     //每remove一次商店存货增加1，相当于直接修改html的显示了
-    let oldQuantity = rows.getElementsByTagName("td")[4].innerHTML;
+    // let oldQuantity = rows.getElementsByTagName("td")[4].innerHTML;
     xHRObject.open("GET", "showCart.php?id=" + Number(new Date) + "&action=confirm", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
