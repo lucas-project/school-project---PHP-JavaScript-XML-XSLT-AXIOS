@@ -20,7 +20,7 @@
                         <tr>
                             <td><xsl:value-of select="id" /></td>
                             <td><xsl:value-of select="name" /></td>
-                            <td><xsl:value-of select="description" /></td>
+                            <td><xsl:value-of select="substring (description ,0, 20)" /></td>
                             <td><xsl:value-of select="price" /></td>
                             <td><xsl:value-of select="quantity" /></td>
                             <td><button onclick="addItemToCart({$itemNo});">Add one to cart</button></td>

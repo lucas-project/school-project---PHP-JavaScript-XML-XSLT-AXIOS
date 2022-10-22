@@ -1,2 +1,14 @@
 <?xml version="1.0"?>
-<cart/>
+<cart>
+  <item>
+    <id>1666416645212</id>
+    <price>1</price>
+    <quantity>5</quantity>
+  </item>
+  <total>8</total>
+  <item>
+    <id>1666418253974</id>
+    <price>1</price>
+    <quantity>3</quantity>
+  </item>
+</cart>

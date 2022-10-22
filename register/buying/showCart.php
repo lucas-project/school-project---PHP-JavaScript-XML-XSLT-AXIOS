@@ -164,10 +164,13 @@ function logoutCancelConfirmHandle($action) {
                     echo "<br/>xmlSold ".$xmlSold;
                 } else if ($action == "cancel") {
                     $good->getElementsByTagName('quantity')->item(0)->nodeValue = $xmlQuantity + $cartQuantity;
-                    echo "<br/>xmlQuantity ".$xmlQuantity;
+//                    echo "<br/>xmlQuantity ".$xmlQuantity;
 
+                    echo "Your purchase request has been cancelled, welcome to shop next time";
+//                    break;
+                    return;
                     //检查前端是否传了一个参数叫storeQuan，代表的是表格上读取的商店数量，有的话存进SESSION
-                    $storeQuan =0;
+//                    $storeQuan =0;
 //                    if (array_key_exists("storequan", $_GET)) {
 //                        $storeQuan = $_GET["storequan"];
 //                    } else {

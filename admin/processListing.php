@@ -47,7 +47,7 @@ header('Content-Type: text/xml');
         $items = $doc->getElementsByTagName("items");
         $add = "";
 
-        echo "else";
+//        echo "else";
         //create a item node under items node
         $items = $doc->getElementsByTagName('items')->item(0);
         $item = $doc->createElement('item');
@@ -107,7 +107,7 @@ header('Content-Type: text/xml');
 
 
 
-        echo "The item has been listed in the system, and the item number is: ".$id;
+        echo "<br>The item has been listed in the system, and the item number is: ".$id;
 
         echo "<a href=../buyonline.htm> <- Back</a>";
 

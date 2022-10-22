@@ -51,7 +51,7 @@ if(isset($_GET["email"]) && isset($_GET["password"])) {
 //                    echo "Cookie is".$_COOKIE["userid"];
 //                }
 
-                echo "<br><a href='./buying/buying.htm'>buying page</a>";
+                echo "<br><a href='buying/buying.htm'>buying page</a>";
                 array_push($correctmsg,"successfully");
                 break;
             } else {
