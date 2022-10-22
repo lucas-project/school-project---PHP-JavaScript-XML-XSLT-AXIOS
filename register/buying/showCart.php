@@ -160,15 +160,20 @@ function logoutCancelConfirmHandle($action) {
 //                echo "<br/>inside ".$key;
 //                $xmlOnhold = $xmlOnhold - $cartQuantity;
                 if ($action == "confirm") {
-                    $xmlSold = $xmlSold + $cartQuantity;
-                    echo "<br/>xmlSold ".$xmlSold;
+//                    $xmlSold = $xmlSold + $cartQuantity;
+                    $good->getElementsByTagName('sold')->item(0)->nodeValue = $xmlSold + $cartQuantity;
+                    $good->getElementsByTagName('onhold')->item(0)->nodeValue = $xmlOnhold - $cartQuantity;
+                    $cartXml = $docForCart->getElementsByTagName('cart')->item(0);
+                    $totalP = $cartXml->getElementsByTagName("total")->item(0)->nodeValue;
+                    echo "<br/>Your purchase has been confirmed and total amount due to pay is ".$totalP;
                 } else if ($action == "cancel") {
                     $good->getElementsByTagName('quantity')->item(0)->nodeValue = $xmlQuantity + $cartQuantity;
 //                    echo "<br/>xmlQuantity ".$xmlQuantity;
+                    $good->getElementsByTagName('onhold')->item(0)->nodeValue = $xmlOnhold - $cartQuantity;
 
                     echo "Your purchase request has been cancelled, welcome to shop next time";
 //                    break;
-                    return;
+//                    return;
                     //检查前端是否传了一个参数叫storeQuan，代表的是表格上读取的商店数量，有的话存进SESSION
 //                    $storeQuan =0;
 //                    if (array_key_exists("storequan", $_GET)) {
@@ -189,9 +194,12 @@ function logoutCancelConfirmHandle($action) {
 //                        echo "<br>Your purchase request has been cancelled, welcome to shop next time";
 //                        exit();
                     }
+
                 }
         }
+
     }
+
 
     //不管是cancel还是logout， 清空购物车
     $cartXml = $docForCart->getElementsByTagName('cart')->item(0);
@@ -216,7 +224,6 @@ function saveCart($cartArr, $action) {
     $root = $xmlDoc->documentElement;
     $arrGood = $root->getElementsByTagName('item');
     $cartXml = $docForCart->getElementsByTagName('cart')->item(0);
-
     //1. 在商店里根据物品id获取价格然后叠加
     $priceFrGood = 0;
     $total = 0;

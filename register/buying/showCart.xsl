@@ -37,7 +37,7 @@
                 </xsl:for-each>
                 <tr class="alert alert-success">
                     <td colspan="3"><span class="">Total:</span></td>
-                    <td><xsl:value-of select="/cart/total"/></td>
+                    <td  name="totalP"><xsl:value-of select="/cart/total"/></td>
                 </tr>
                 <tr>
                     <td colspan="2"><button class="btn btn-success" onclick="confirmPurchase();">Confirm Purchase</button></td>
