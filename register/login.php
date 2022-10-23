@@ -1,3 +1,7 @@
+<!--customer login server-->
+<!--this file is for handling server side of customer login, it compare customer's input against customer.xml-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/09/2022-->
 <?php
 ob_start();
 session_start();

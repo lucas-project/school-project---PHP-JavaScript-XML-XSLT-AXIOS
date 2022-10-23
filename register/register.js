@@ -1,3 +1,8 @@
+//<!--processing customer register request and send to its server-->
+//<!--this file is for sending customer register request to server-->
+//<!--@author Lucas Qin, student ID is 103527269.-->
+//<!--@date 10/10/2022-->
+
 var xhr = false;
 if (window.XMLHttpRequest) {
 	xhr = new XMLHttpRequest();
@@ -30,13 +35,14 @@ function testInput() {
 	}
 	
 }
-
+//display xml that store customer register info
 function getXML() {
 xhr.open ("GET", "getData.php", true);
 xhr.onreadystatechange = testXML;
 xhr.send(null);
 }
 
+//display xml component for getXml()
 function testXML() {
 	if ((xhr.readyState == 4) && (xhr.status == 200)) {
 		//var xmlDoc = xhr.responseXML;
@@ -44,7 +50,7 @@ function testXML() {
 		alert(xmlDoc);
 	}
 }
-
+//delete xml that store all user's register info
 function deleteXML() {
 xhr.open ("GET", "deleteFile.php", true);
 xhr.onreadystatechange = function () {
@@ -54,6 +60,7 @@ if ((xhr.readyState == 4) && (xhr.status == 200)) {
 }
 xhr.send(null);
 }
+//reset inputs
 function clearForm() {
 document.getElementById("firstname").value ="";
 document.getElementById("lastname").value ="";

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!--xslt file fot goods.xml-->
+<!--define to the condition of displaying data from goods.xml, sold>0-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/10/2022-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="html"/>
-
     <!-- TODO customize transformation rules
          syntax recommendation http://www.w3.org/TR/xslt
     -->

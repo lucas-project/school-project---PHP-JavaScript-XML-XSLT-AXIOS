@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--xslt file for goods.xml-->
+<!--this file for displaying goods.xml's info in a table-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/10/2022-->
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">

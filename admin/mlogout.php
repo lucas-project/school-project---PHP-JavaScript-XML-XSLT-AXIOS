@@ -1,7 +1,7 @@
-<!--logout page-->
+<!--manager logout page-->
 <!--For users to logout to their accounts-->
 <!--@author Lucas Qin, student ID is 103527269.-->
-<!--@date 10/09/2022-->
+<!--@date 10/10/2022-->
 <style>
     <?php include '../styles.css'; ?>
 </style>

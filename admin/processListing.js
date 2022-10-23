@@ -1,3 +1,7 @@
+//<!--processing manager listing page's request and send to its server-->
+//<!--For handling all http request form listing page-->
+//<!--@author Lucas Qin, student ID is 103527269.-->
+//<!--@date 10/10/2022-->
 var xhr = false;
 if (window.XMLHttpRequest) {
     xhr = new XMLHttpRequest();

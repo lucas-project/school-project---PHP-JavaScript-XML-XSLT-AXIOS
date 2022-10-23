@@ -1,5 +1,8 @@
 <!--更新商店xml和购物车xml并保存-->
-
+<!--displaying cart server side-->
+<!--this file is for updating goods.xml and cart.xml, define the relationship of hold, sold and available quantity and store in relevant xml-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/10/2022-->
 <?php session_start(); ?>
 <?php
 //定义路径

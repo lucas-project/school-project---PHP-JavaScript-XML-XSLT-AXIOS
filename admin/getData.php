@@ -1,14 +1,13 @@
+<!--get data from xml function-->
+<!--this file is for getting data from goods.xml-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/10/2022-->
 <?php
-/*
-	Author: Wei Lai
-	Date: 9/10/2018
-*/
-
 header('Content-Type: text/xml');
 
 $xmlfile = './goods.xml';
 
-if (!file_exists($xmlfile)){ // if the xml file does not exist
+if (!file_exists($xmlfile)){ // if the xml file not exist
     echo "The xml file does not exist.";
 } else {
     $doc = new DomDocument();

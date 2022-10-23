@@ -1,8 +1,11 @@
+<!--manager logout page-->
+<!--this is the server side of processing page, it perform following functions:-->
+<!--1. clear all sold items-->
+<!--2. remove items with available quantity 0-->
+<!--3. quantity onhold set to 0-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/10/2022-->
 <?php
-
-//clearing the quantity sold for all those items with sold quantities,
-//and removing those items that have been completely sold, i.e., both quantity
-//available and quantity on hold equal to 0.
 
 $pathToFile = "./goods.xml";
 $xmlDoc = new DomDocument("1.0");

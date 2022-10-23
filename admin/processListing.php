@@ -1,13 +1,19 @@
+<!--listing page's server side-->
+<!--this file the server side of the listing page, it check all inputs, create xml file if not exist, store new item to goods.xml-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/10/2022-->
 <?php
 header('Content-Type: text/xml');
 
     $err_msg = "";
+    //define sanitization of the data
     function sanitise_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
+    //check all data input
     $name = sanitise_input($_GET["name"]);
     if ($name==""){
         $err_msg.="<p>Please fill in item's name.</p>";
@@ -32,14 +38,17 @@ header('Content-Type: text/xml');
     }
     else {
 
+        //define xml location
         $xmlfile = './goods.xml';
         $doc = new DomDocument();
 
+        //if xml not exist, create a new one
         if (!file_exists($xmlfile)){ // if the xml file does not exist, create a root node $items
             $items = $doc->createElement('items');
             $doc->appendChild($items);
             echo "items created";
         }
+        //if existed, insert new item
         else { // load the xml file
             $doc->preserveWhiteSpace = FALSE;
             $doc->load($xmlfile);
@@ -107,6 +116,7 @@ header('Content-Type: text/xml');
 
 
 
+        //tell user the final result
         echo "<br>The item has been listed in the system, and the item number is: ".$id;
 
         echo "<a href=../buyonline.htm> <- Back</a>";

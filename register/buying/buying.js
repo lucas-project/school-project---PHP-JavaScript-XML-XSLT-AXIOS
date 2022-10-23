@@ -1,3 +1,7 @@
+//<!--send all request from buying page to server-->
+//<!--this file is handling all request from buying page,including displaying items, cart-->
+//<!--@author Lucas Qin, student ID is 103527269.-->
+//<!--@date 10/10/2022-->
 let xHRObject = false;
 
 if (window.ActiveXObject) {

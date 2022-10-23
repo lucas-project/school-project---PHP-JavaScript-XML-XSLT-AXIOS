@@ -1,3 +1,7 @@
+//<!--processing customer login request and send to its server-->
+//<!--this file is for sending customer login request to server-->
+//<!--@author Lucas Qin, student ID is 103527269.-->
+//<!--@date 10/10/2022-->
 var xhr = false;
 if (window.XMLHttpRequest) {
     xhr = new XMLHttpRequest();

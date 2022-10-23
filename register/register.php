@@ -1,19 +1,26 @@
+<!--processing manager login request and send to its server-->
+<!--this file is for sending manager login request to server-->
+<!--@author Lucas Qin, student ID is 103527269.-->
+<!--@date 10/10/2022-->
 <?php
 
 header('Content-Type: text/xml');
-
+//if all inputs provided
 if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]) && isset($_GET["lastname"]) ){
     $err_msg = "";
+    //define santisation method
     function sanitise_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
+    //santise all inputs
 	$firstName = sanitise_input($_GET["firstname"]);
 	$lastName = sanitise_input($_GET["lastname"]);
 	$email = sanitise_input($_GET["email"]);
     $id = $_GET["id"];
+    //check phone format
     if (isset($_GET["phone"])){
         $phone = sanitise_input($_GET["phone"]);
         if (!preg_match("/^[0][0-9][\s][0-9]{8}$/",$phone) && !preg_match("/^[(][0]\d[)]\d{8}$/",$phone)){
@@ -23,6 +30,7 @@ if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]
 
 	$password = sanitise_input($_GET["password"]);
 
+    //check all inputs
 	if (empty($firstName)) {
 			$err_msg .= "You must enter first name. <br />";
 	}
@@ -58,6 +66,7 @@ if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]
 	$xmlfile = './register.xml';
 	$doc = new DomDocument();
 
+    //if xml not exist, create one
 	if (!file_exists($xmlfile)){ // if the xml file does not exist, create a root node $customers
 		$customers = $doc->createElement('customers');
 		$doc->appendChild($customers);
