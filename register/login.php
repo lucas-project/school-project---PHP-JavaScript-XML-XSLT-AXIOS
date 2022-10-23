@@ -44,7 +44,7 @@ if(isset($_GET["email"]) && isset($_GET["password"])) {
             $emailValue = $emails->item($i)->nodeValue;
             $passValue = $passwords->item($i)->nodeValue;
             if (trim($emailValue) == trim($email) && trim($passValue) == trim($password)) {
-                echo "successfully logined<br>";
+                echo "Successfully logined<br>";
                 $idValue = $ids->item($i)->nodeValue;
                 $_SESSION["userid"] = $idValue;
                 $_SESSION["email"]=$emailValue;
@@ -55,7 +55,7 @@ if(isset($_GET["email"]) && isset($_GET["password"])) {
 //                    echo "Cookie is".$_COOKIE["userid"];
 //                }
 
-                echo "<br><a href='buying/buying.htm'>buying page</a>";
+                echo "<br><h2><a href='buying.htm'><strong>Buying page<strong</a></h2>";
                 array_push($correctmsg,"successfully");
                 break;
             } else {
