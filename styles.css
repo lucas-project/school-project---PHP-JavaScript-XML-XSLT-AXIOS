@@ -1,0 +1,60 @@
+
+#titles {
+    width:800px;
+    height: 100px;
+    background: bisque;
+    justify-content: center;
+    margin:auto;
+    padding: 0.2rem;
+}
+#buttons {
+    width:800px;
+    height: 300px;
+    background: beige;
+    justify-content: center;
+    margin:auto;
+    padding: 0.2rem;
+}
+#inButtons {
+    padding: 5%;
+    width: 85%;
+    height: auto;
+    margin:auto;
+}
+h1,p,h3 {
+    padding-top: 1%;
+    margin-left:230px;
+}
+#bottom {
+    width: 800px;
+    height: 20px;
+    background: bisque;
+    margin:auto;
+}
+
+#msgS {
+    width: 800px;
+    height: auto;
+    margin: auto;
+    background: bisque;
+}
+#links {
+    padding-top: 5%;
+    margin-left: 25%;
+}
+#titleSS {
+    width:800px;
+    height: 40px;
+    background: bisque;
+    justify-content: center;
+    margin:auto;
+    padding-bottom: 3rem;
+}
+#processTable {
+    width: 800px;
+    min-height: 300px;
+    height: auto;
+    margin: auto;
+    background: bisque;
+    border: brown 1px;
+}

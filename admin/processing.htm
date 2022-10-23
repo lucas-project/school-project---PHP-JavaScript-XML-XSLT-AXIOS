@@ -1,60 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <style>
-        hr {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            border: 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-    </style>
-    <script type="text/javascript" src="processing.js"></script>
-</head>
-<body>
-<div class="row" id="header">
-    <div class="col">
-        <ul class="nav nav-pills justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link " href="listing.htm">Listing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="processing.htm">Processing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mlogout.php">Logout</a>
-            </li>
-
-        </ul>
-    </div>
-</div>
-<hr/>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h3>Processing Form</h3>
-            <div id="showProcess"></div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <div id="error" class="alert alert-danger">
-
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="processing.js"></script>
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+            <div id="titles">
+                <div id="links">
+                    &nbsp;&nbsp;&nbsp;<a href="listing.htm"><strong>Listing</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="processing.htm"><strong>Processing</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="mlogout.php"><strong>Logout</strong></a>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<script>
-    document.getElementById('error').style.display = "none";
-</script>
-</body>
+            <hr/>
+            <div id="titleSS">
+                <h1>Processing Form</h1>
+
+                <div id="inButtons">
+
+                    <div id="error"></div>
+                </div>
+            </div>
+            <div id="processTable">
+                <span id="showProcess"></span>
+            </div>
+
+
+            <script>
+                document.getElementById('error').style.display = "none";
+            </script>
+    </body>
 
 </html>

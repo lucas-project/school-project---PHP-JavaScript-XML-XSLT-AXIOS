@@ -5,32 +5,66 @@
     <script type="text/javascript" src="buying.js"></script>
 </head>
 <body>
-<span id="welcome"/></span>
-<span id="results" /></span>
+        <style>
+            #titles {
+                width:800px;
+                height: 100px;
+                background: bisque;
+                justify-content: center;
+                margin:auto;
+                padding: 0.2rem;
+            }
+            #buttons {
+                width:800px;
+                height: 300px;
+                background: beige;
+                justify-content: center;
+                margin:auto;
+                padding: 0.2rem;
+            }
+            #inButtons {
+                padding: 2%;
+                width: 90%;
+                height: auto;
+                margin:auto;
+            }
+            h1,p {
+                margin-left:230px;
+            }
+            #bottom {
+                width: 800px;
+                height: 20px;
+                background: bisque;
+                margin:auto;
+            }
 
-<div class="row" id="header">
-    <div class="col">
-        <ul class="nav nav-pills justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="../logout.htm">Logout</a>
-            </li>
+            #msgS {
+                width: 800px;
+                height: auto;
+                margin: auto;
+                background: bisque;
+            }
+        </style>
 
-        </ul>
-    </div>
-</div>
-<hr/>
-<div class="container">
-    <div class="row">
-        <div class="col">
+
+
+        <div id="titles">
+            <h1>Welcome to Buying page</h1>
+            <a href="../logout.htm">Logout</a>
+        </div>
+
+        <hr/>
+        <div id="buttons">
+            <div id="inButtons">
+                <span id="welcome"/></span>
+                <span id="results" /></span>
+
+            </div>
+        </div>
+        <div id="msgS">
             <div id="catalog"></div>
             <div id="messageCatalog"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
             <div id="cart"></div>
         </div>
-    </div>
-</div>
 </body>
 </html>

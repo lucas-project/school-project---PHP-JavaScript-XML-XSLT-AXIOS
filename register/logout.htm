@@ -15,10 +15,60 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles.css">
     <title>customer logout</title>
 </head>
 <body>
-<div id="thanks"></div>
+<!--<style>-->
+<!--    #titles {-->
+<!--        width:800px;-->
+<!--        height: 100px;-->
+<!--        background: bisque;-->
+<!--        justify-content: center;-->
+<!--        margin:auto;-->
+<!--        padding: 0.2rem;-->
+<!--    }-->
+<!--    #buttons {-->
+<!--        width:800px;-->
+<!--        height: 300px;-->
+<!--        background: beige;-->
+<!--        justify-content: center;-->
+<!--        margin:auto;-->
+<!--        padding: 0.2rem;-->
+<!--    }-->
+<!--    #inButtons {-->
+<!--        padding: 5%;-->
+<!--        width: 40%;-->
+<!--        height: auto;-->
+<!--        margin:auto;-->
+<!--    }-->
+<!--    h1,p {-->
+<!--        margin-left:230px;-->
+<!--    }-->
+<!--    #bottom {-->
+<!--        width: 800px;-->
+<!--        height: 20px;-->
+<!--        background: bisque;-->
+<!--        margin:auto;-->
+<!--    }-->
+
+<!--    #msgS {-->
+<!--        width: 800px;-->
+<!--        height: auto;-->
+<!--        margin: auto;-->
+<!--        background: bisque;-->
+<!--    }-->
+<!--</style>-->
+<div id="titles">
+    <h1>You have logged out</h1>
+</div>
+<div id="buttons">
+    <div id="inButtons">
+        <div id="thanks"></div>
+    </div>
+
+</div>
+
 <script>
     function getCookie(cookieName) {
         let name = cookieName + "=";
@@ -35,12 +85,14 @@
         }
         return "";
     }
-  let username = getCookie("email")
+    let username = getCookie("email")
     let userid = getCookie("userid")
     document.getElementById("thanks").innerHTML = "Thank you for using BuyOnline, your email is "+username+", your customer id is "+ userid+".";
 </script>
-
+<div id="msgS">
     <br><button><a href='login.htm'>customer login</a></button><br>
-<br><button><a href='../buyonline.htm'>return to homepage</a></button><br>
+    <br><button><a href='../buyonline.htm'>return to homepage</a></button><br>
+</div>
+
 </body>
 </html>

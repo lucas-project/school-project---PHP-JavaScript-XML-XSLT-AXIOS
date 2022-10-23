@@ -165,7 +165,7 @@ function logoutCancelConfirmHandle($action) {
                     $good->getElementsByTagName('onhold')->item(0)->nodeValue = $xmlOnhold - $cartQuantity;
                     $cartXml = $docForCart->getElementsByTagName('cart')->item(0);
                     $totalP = $cartXml->getElementsByTagName("total")->item(0)->nodeValue;
-                    echo "<br/>Your purchase has been confirmed and total amount due to pay is ".$totalP;
+                    echo "<br/>Your purchase has been confirmed and total amount due to pay is $".$totalP;
                 } else if ($action == "cancel") {
                     $good->getElementsByTagName('quantity')->item(0)->nodeValue = $xmlQuantity + $cartQuantity;
 //                    echo "<br/>xmlQuantity ".$xmlQuantity;
@@ -304,7 +304,7 @@ function createGood($docForCart, $cart, $itemNumber, $priceFrGood, $quantity) {
 }
 //转化xsl
 function transformXsl($xsl) {
-    echo "<br>16";
+//    echo "<br>16";
     $xmlDoc = new DomDocument("1.0");
     $xmlDoc->formatOutput = true;
     $xmlDoc->preserveWhiteSpace = false;
@@ -316,7 +316,7 @@ function transformXsl($xsl) {
 
     $proc = new XSLTProcessor;
     $proc->importStyleSheet($xslDoc);
-    echo "<br>17";
+//    echo "<br>17";
     echo $proc->transformToXML($xmlDoc);
 }
 //创建xml

@@ -3,7 +3,9 @@
 ob_start();
 session_start();
 ?>
-
+<style>
+    <?php include '../styles.css'; ?>
+</style>
 
 <?php
 $file = "./manager.txt";
@@ -41,11 +43,11 @@ else {
             if (strcmp(trim($curBowler[1]), trim($password)==0)){
                 $_SESSION['managerid']=$name;
                 setcookie("managerid",$name);
-                echo "You are successfully logined in, your manager id is ".$name;
-                echo "<h4>Choose an operation below:</h4><br>";
-                echo "<br><br><button><a href='processing.htm'>processing page</a></button><br>";
+                echo "<div id='titles'><h4>You are successfully logined in, your manager id is ".$name."</h4></div>";
+                echo "<h3>Choose an operation below:</h3><br>";
+                echo "<div id='buttons'><div id='inButtons'> <br><br><button><a href='processing.htm'>processing page</a></button><br>";
                 echo "<br><button><a href='listing.htm'>listing page</a></button>";
-                echo "<br><br><button><a href='mlogout.php'>logout</a></button>";
+                echo "<br><br><button><a href='mlogout.php'>logout</a></button></div></div>";
                 break;
             }else {
 //                echo $name." ".$curBowler[1];

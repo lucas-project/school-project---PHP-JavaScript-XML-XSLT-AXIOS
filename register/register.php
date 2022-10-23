@@ -111,22 +111,22 @@ if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]
         $customers = $doc->getElementsByTagName("customers");
         $customer = $doc->getElementsByTagName("customer");
 
-        echo "<br>before childNodes";
+//        echo "<br>before childNodes";
         $emails = $doc->getElementsByTagName('email');
         $length = $emails->length;
-        echo "<br>before for";
+//        echo "<br>before for";
         for ($i=0;$i<$length;$i++){
-            echo "<br>emails length is:".$length."<br>";
-
+//            echo "<br>emails length is:".$length."<br>";
 
             $emailValue = $emails->item($i)->nodeValue;
 //            echo "<br>".$email."=".$emailValue;
             if(trim($emailValue)==trim($email)){
                 echo "<br>Email existed, please try another one or <a href='login.htm'>login</a>";
-                break;
-                exit;
+                return;
+//                break;
+//                exit;
             }else{
-                echo "<br>create elements";
+//                echo "<br>create elements";
                 //create a customer node under customers node
                 $customers = $doc->getElementsByTagName('customers')->item(0);
                 $customer = $doc->createElement('customer');
@@ -168,7 +168,9 @@ if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]
                 $pwdValue = $doc->createTextNode($password);
                 $pwd->appendChild($pwdValue);
             }
+
         }
+        echo "Successfully registered, email is ".$email;
 
 //        if (isset($customers->customer)){
 //            echo "before foreach";

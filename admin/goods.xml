@@ -4,7 +4,7 @@
     <id>1666416645212</id>
     <name>Toyota</name>
     <price>1</price>
-    <quantity>9952</quantity>
+    <quantity>9950</quantity>
     <description>Japanese car</description>
     <onhold>88</onhold>
     <sold>0</sold>
@@ -14,7 +14,7 @@
     <id>1666418253974</id>
     <name>Yamaha</name>
     <price>1</price>
-    <quantity>9965</quantity>
+    <quantity>9963</quantity>
     <description>The brand new yamaha mt-10 is an innovation of the Yamaha power, it sells for only $20 in Australia market.</description>
     <onhold>56</onhold>
     <sold>0</sold>
@@ -28,6 +28,6 @@
     <description>fsdafds</description>
     <onhold>0</onhold>
     <sold>0</sold>
-    <add></add>
+    <add/>
   </item>
 </items>
