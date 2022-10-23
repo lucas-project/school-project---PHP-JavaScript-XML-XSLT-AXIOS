@@ -20,7 +20,7 @@
                     <th>Remove</th>
                 </tr>
 <!--table body-->
-            <tbody id="tblCart">
+            <tbody id="cartItem">
                 <xsl:for-each select="/cart/item">
                     <xsl:variable name="itemNo" select="id"/>
                     <tr>

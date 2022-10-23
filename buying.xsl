@@ -18,8 +18,10 @@
                         <th>Quantity</th>
                         <th>Add</th>
                     </tr>
-                    <tbody id="tblCatalog">
+                    <tbody id="storeItem">
                     <xsl:for-each select="items/item">
+                        <xsl:choose>
+                        <xsl:when test="quantity>0">
                         <xsl:variable name="itemNo" select="id"/>
                         <tr>
                             <td><xsl:value-of select="id" /></td>
@@ -29,6 +31,8 @@
                             <td><xsl:value-of select="quantity" /></td>
                             <td><button onclick="addItemToCart({$itemNo});">Add one to cart</button></td>
                         </tr>
+                        </xsl:when>
+                        </xsl:choose>
                     </xsl:for-each>
                     </tbody>
                 </table>

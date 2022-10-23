@@ -9,7 +9,7 @@ if (window.ActiveXObject) {
 } else if (window.XMLHttpRequest) {
     xHRObject = new XMLHttpRequest();
 }
-//展示购物车
+//展示购物车 display cart
 function getResults(){
     xHRObject.open("POST", "buying.php?id=" + Number(new Date), true);
     xHRObject.onreadystatechange = getData;
@@ -28,18 +28,18 @@ setInterval(getResults,2000);
 
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-//添加商品到购物车
+//添加商品到购物车 add item to cart
 function addItemToCart(itemNo) {
 
-    //获取空间
-    document.getElementById('messageCatalog').className = "";
-    document.getElementById("messageCatalog").innerHTML = "";
-    let table = document.getElementById("tblCatalog");
+    //获取空间 get container
+    document.getElementById('msg').className = "";
+    document.getElementById("msg").innerHTML = "";
+    let table = document.getElementById("storeItem");
     let rows = table.getElementsByTagName("tr");
     let row;
     console.log("1");
 
-    //直接从后台返回的表格里拿id，用于发送请求
+    //直接从后台返回的表格里拿id，用于发送请求 get id from table using DOM
     for (let i = 0; i < rows.length; i++) {
         console.log("2");
         if (parseInt(rows[i].cells[0].innerHTML) == parseInt(itemNo)) {
@@ -47,13 +47,13 @@ function addItemToCart(itemNo) {
         }
     }
     console.log("3");
-    //检查商店商品数量
+    //检查商店商品数量 check store quantity
     let oldQuantity = row.getElementsByTagName("td")[4].innerHTML;
-    //如果商店还有存货
+    //如果商店还有存货 if item quantity greater than 0
     if (oldQuantity > 0) {
         console.log("4");
         // row.getElementsByTagName("td")[4].innerHTML = oldQuantity - 1;
-        xHRObject.open("GET", "showCart.php?id=" + Number(new Date) + "&itemNumber=" + itemNo + "&action=add", true);
+        xHRObject.open("GET", "cart.php?id=" + Number(new Date) + "&itemNumber=" + itemNo + "&action=add", true);
         xHRObject.onreadystatechange = function () {
             if (xHRObject.readyState == 4 && xHRObject.status == 200) {
                 let response = xHRObject.responseText;
@@ -62,15 +62,15 @@ function addItemToCart(itemNo) {
         }
         xHRObject.send(null);
     } else {
-        document.getElementById("messageCatalog").innerHTML = "Sorry this item is not available for sale";
+        document.getElementById("msg").innerHTML = "Sorry this item is not available for sale.<br>";
     }
     // end
 }
 
-//从购物车移除商品
+//从购物车移除商品 remove item from cart
 function removeItemFromCart(itemNo) {
-    // 从商店表格获取商品信息
-    let table = document.getElementById("tblCatalog");
+    // 从商店表格获取商品信息 access store item
+    let table = document.getElementById("storeItem");
     let rows = table.getElementsByTagName("tr");
     let row;
     for (let i = 0; i < rows.length; i++) {
@@ -78,11 +78,8 @@ function removeItemFromCart(itemNo) {
             row = rows[i];
         }
     }
-    //每remove一次商店存货增加1，相当于直接修改html的显示了
-    let oldQuantity = row.getElementsByTagName("td")[4].innerHTML;
-    row.getElementsByTagName("td")[4].innerHTML = parseInt(oldQuantity) + 1;
-
-    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) + "&itemNumber=" + itemNo + "&action=remove", true);
+    //send item id to server
+    xHRObject.open("GET", "cart.php?id=" + Number(new Date) + "&itemNumber=" + itemNo + "&action=remove", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
             let response = xHRObject.responseText;
@@ -92,15 +89,15 @@ function removeItemFromCart(itemNo) {
     xHRObject.send(null);
 }
 
-//确认购买
+//确认购买 confirm purchase
 function confirmPurchase() {
     // 从cart表格获取商品信息
-    let table = document.getElementById("tblCart");
+    let table = document.getElementById("cartItem");
     let rows = table.getElementsByTagName("tr");
 
     //每remove一次商店存货增加1，相当于直接修改html的显示了
     // let oldQuantity = rows.getElementsByTagName("td")[4].innerHTML;
-    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) + "&action=confirm", true);
+    xHRObject.open("GET", "cart.php?id=" + Number(new Date) + "&action=confirm", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
             let response = xHRObject.responseText;
@@ -110,21 +107,21 @@ function confirmPurchase() {
     xHRObject.send(null);
 }
 
-//取消购物车
+//取消购物车 cancel cart
 function cancelPurchase() {
     // find how many item in cart based on tr quantity
-    let tblCart = document.getElementById("tblCart");
-    let cartLength = tblCart.getElementsByTagName("tr").length - 2;
+    let cartItem = document.getElementById("cartItem");
+    let cartLength = cartItem.getElementsByTagName("tr").length - 2;
 
-    let tblCatalog = document.getElementById("tblCatalog");
-    let rowsOfCatalog = tblCatalog.getElementsByTagName("tr");
-    let catalogLength = tblCatalog.getElementsByTagName("tr").length;
+    let storeItem = document.getElementById("storeItem");
+    let rowsOfCatalog = storeItem.getElementsByTagName("tr");
+    let catalogLength = storeItem.getElementsByTagName("tr").length;
 
     let storeQuan = 0;
     let cartQuan = 0;
-    //扫描购物车获取商品种类和计算商店应该恢复的数量
+    //扫描购物车获取商品种类和计算商店应该恢复的数量 loop over cart and calculate amount of items to return to store
     for (let i = 0; i < cartLength; i++) {
-        let rowOfCart = tblCart.getElementsByTagName("tr")[i];
+        let rowOfCart = cartItem.getElementsByTagName("tr")[i];
         //quantity of the item
         let quantityOfCart = rowOfCart.getElementsByTagName("td")[2].innerHTML;
         //id of the item
@@ -138,8 +135,8 @@ function cancelPurchase() {
             }
         }
     }
-    // 把算好的数量发给后台更新xml
-    xHRObject.open("GET", "showCart.php?id=" + Number(new Date) +"&storeQuan="+storeQuan+"&cartQuan="+cartQuan+"&action=cancel", true);
+    // 把算好的数量发给后台更新xml calculate store quantity and cart quantity and send to server
+    xHRObject.open("GET", "cart.php?id=" + Number(new Date) +"&storeQuan="+storeQuan+"&cartQuan="+cartQuan+"&action=cancel", true);
     xHRObject.onreadystatechange = function () {
         if (xHRObject.readyState == 4 && xHRObject.status == 200) {
             let response = xHRObject.responseText;
