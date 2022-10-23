@@ -26,7 +26,7 @@ if(isset($_GET["email"]) && isset($_GET["password"])) {
         $err_msg .= "You must enter a password. <br />";
     }
     $xmlDoc = new DomDocument;
-    $xmlDoc->load("register.xml");
+    $xmlDoc->load("customer.xml");
     //$xslDoc = new DomDocument;
     //$xslDoc->load("books3.xsl");
     if ($err_msg != "") {

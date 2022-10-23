@@ -6,9 +6,9 @@
 <?php session_start(); ?>
 <?php
 //定义路径
-$folder = "../admin";
-$pathToGood = "../admin/goods.xml";
-$pathToCart = "../admin/cart.xml";
+$folder = ".";
+$pathToGood = "./goods.xml";
+$pathToCart = "./cart.xml";
 $action = $_GET["action"];
 //检查前端js是否传参数并获取参数
 if (array_key_exists("itemNumber", $_GET)) {
@@ -43,7 +43,7 @@ $docForCart = new DomDocument("1.0");
 $docForCart->formatOutput = true;
 $docForCart->preserveWhiteSpace = false;
 //echo "<br>before create";
-$xmlfile='../admin/cart.xml';
+$xmlfile='./cart.xml';
 //如果指定路径不存在就创建一个xml
 if (!file_exists($xmlfile)) {
     createXML($docForCart);
@@ -174,7 +174,7 @@ function logoutCancelConfirmHandle($action) {
 //                    echo "<br/>xmlQuantity ".$xmlQuantity;
                     $good->getElementsByTagName('onhold')->item(0)->nodeValue = $xmlOnhold - $cartQuantity;
 
-                    echo "Your purchase request has been cancelled, welcome to shop next time";
+                    echo "Your purchase request has been cancelled, welcome to shop next time<br>";
 //                    break;
 //                    return;
                     //检查前端是否传了一个参数叫storeQuan，代表的是表格上读取的商店数量，有的话存进SESSION
@@ -185,7 +185,7 @@ function logoutCancelConfirmHandle($action) {
 //                        $storeQuan = "0";
 //                    }
 //                    header('Content-Type: text/xml');
-//                    $xmlfile = '../admin/cart.xml';
+//                    $xmlfile = './cart.xml';
 
 //                    if (!unlink($xmlfile)){ // if the xml file does not exist
 //                        echo "Error in deleting $xmlfile.";
@@ -210,7 +210,7 @@ function logoutCancelConfirmHandle($action) {
         $cartXml->removeChild($cartXml->firstChild);
     }
     //保存清空的状态
-    $docForCart->save("../admin/cart.xml");
+    $docForCart->save("./cart.xml");
     $xmlDoc->save($pathToGood);
     transformXsl("showCart.xsl");
     //重置SEESION
@@ -289,7 +289,7 @@ function saveCart($cartArr, $action) {
         $totalXml->appendChild($docForCart->createTextNode($total));
     }
     //存到购物车文件
-    $docForCart->save("../admin/cart.xml");
+    $docForCart->save("./cart.xml");
 }
 
 //在购物车创建新的商品
@@ -312,7 +312,7 @@ function transformXsl($xsl) {
     $xmlDoc->formatOutput = true;
     $xmlDoc->preserveWhiteSpace = false;
 
-    $xmlDoc->load("../admin/cart.xml");
+    $xmlDoc->load("./cart.xml");
 
     $xslDoc = new DomDocument("1.0");
     $xslDoc->load($xsl);

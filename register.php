@@ -63,7 +63,7 @@ if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]
 	}
 	else {
 
-	$xmlfile = './register.xml';
+	$xmlfile = './customer.xml';
 	$doc = new DomDocument();
 
     //if xml not exist, create one
@@ -201,7 +201,7 @@ if(isset($_GET["firstname"]) && isset($_GET["email"]) && isset($_GET["password"]
         $doc->formatOutput = true;
         $doc->save($xmlfile);
 
-        echo "<br><a href=../buyonline.htm> <- Back</a>";
+        echo "<br><a href=buyonline.htm> <- Back</a>";
 	} 
 }
 ?>

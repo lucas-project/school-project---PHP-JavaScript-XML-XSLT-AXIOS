@@ -24,5 +24,5 @@ if (isset($_SESSION["managerid"])){
 //    return false;
 //}
 echo "<br><div id='buttons'> <div id='inButtons'></div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button><a href='mlogin.htm'>Manager login</a></button><br>";
-echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button><a href='../buyonline.htm'>return to homepage</a></button></div></div><br>";
+echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button><a href='buyonline.htm'>return to homepage</a></button></div></div><br>";
 ?>

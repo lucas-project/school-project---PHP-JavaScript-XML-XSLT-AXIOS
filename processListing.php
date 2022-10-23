@@ -119,7 +119,7 @@ header('Content-Type: text/xml');
         //tell user the final result
         echo "<br>The item has been listed in the system, and the item number is: ".$id;
 
-        echo "<a href=../buyonline.htm> <- Back</a>";
+        echo "<a href=buyonline.htm> <- Back</a>";
 
 
 }
