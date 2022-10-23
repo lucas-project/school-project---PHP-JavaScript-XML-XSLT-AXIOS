@@ -49,7 +49,7 @@ if(isset($_GET["email"]) && isset($_GET["password"])) {
                 $_SESSION["userid"] = $idValue;
                 $_SESSION["email"]=$emailValue;
                 setcookie("userid",$idValue);
-                setcookie("emial",$emailValue);
+                setcookie("email",$emailValue);
                 echo "Your email address is ".$_SESSION['email'].", and you customer id is ".$_SESSION['userid']."<br>";
 //                if (isset($_COOKIE["userid"])){
 //                    echo "Cookie is".$_COOKIE["userid"];

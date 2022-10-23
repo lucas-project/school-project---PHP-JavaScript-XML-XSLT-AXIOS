@@ -17,7 +17,7 @@
     <quantity>9956</quantity>
     <description>The brand new yamaha mt-10 is an innovation of the Yamaha power, it sells for only $20 in Australia market.</description>
     <onhold>56</onhold>
-    <sold>4</sold>
+    <sold>0</sold>
     <add/>
   </item>
   <item>
@@ -27,7 +27,17 @@
     <quantity>2</quantity>
     <description>fsdafds</description>
     <onhold>0</onhold>
-    <sold>1</sold>
+    <sold>0</sold>
+    <add/>
+  </item>
+  <item>
+    <id>1666508814204</id>
+    <name>Make the world better</name>
+    <price>2</price>
+    <quantity>3</quantity>
+    <description>fsdfffffffffffffffff</description>
+    <onhold>0</onhold>
+    <sold>0</sold>
     <add/>
   </item>
 </items>

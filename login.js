@@ -11,7 +11,7 @@ else if (window.ActiveXObject) {
 }
 
 // access user inputs from customer page and pass them
-// to custRegister.php
+// to login.php
 function testGet() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
@@ -19,6 +19,28 @@ function testGet() {
     xhr.open("POST", "login.php?email=" + encodeURIComponent(email) + "&password=" +password + "&id=" + Number(new Date), true);
 
     xhr.onreadystatechange = testInput;
+    function getCookie(cookieName) {
+        let name = cookieName + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+    function checkCookie() {
+        if(getCookie("userid")!==null){
+            window.location = "buying.htm"
+        }
+    }
+    setInterval(checkCookie,2000)
+
     xhr.send(null);
 
 }
